@@ -1,0 +1,60 @@
+syntax = "v1"
+
+type (
+    FlowCateListRequest {
+        Page int `form:"page"`         // 分页
+        PageSize int `form:"pageSize"` // 每页条数
+    }
+
+    FlowCateListResponse {
+        Page int `json:"page"`             // 分页
+        PageSize int `json:"pageSize"`     // 每页条数
+        Total int `json:"total"`           // 总条数
+        Data []FlowCateList `json:"data"`  // 具体数据
+    }
+
+    FlowCateList {
+        Id int `json:"id"`                  // ID
+        Name string `json:"name"`           // 分类名
+        CreateTime string `json:"createTime"` // 创建时间
+    }
+
+    AddFlowCateRequest {
+        Name string `json:"name" binding:"required"` // 分类名
+    }
+
+    EditFlowCateRequest {
+        Id int `path:"id"`                           // ID
+        Name string `json:"name" binding:"required"` // 分类名
+    }
+
+    DeleteFlowCateRequest {
+        Id int `path:"id"` // ID
+    }
+)
+
+
+@server(
+    jwt: Jwt
+    middleware: Auth
+    group: flowCate
+    swtags: 流程分类相关
+)
+
+service go-flow-admin {
+    @doc "流程分类列表"
+    @handler list
+    get /flow/cate (FlowCateListRequest) returns (FlowCateListResponse)
+
+    @doc "添加流程分类"
+    @handler add
+    post /flow/cate (AddFlowCateRequest)
+
+    @doc "编辑流程分类"
+    @handler edit
+    put /flow/cate/:id (EditFlowCateRequest)
+
+    @doc "删除流程分类"
+    @handler del
+    delete /flow/cate/:id (DeleteFlowCateRequest)
+}

@@ -1,0 +1,184 @@
+syntax = "v1"
+
+type (
+    TaskListRequest {
+        Page int `form:"page"`         // 分页
+        PageSize int `form:"pageSize"` // 每页条数
+    }
+
+    TaskListResponse {
+        Page int `json:"page"`             // 分页
+        PageSize int `json:"pageSize"`     // 每页条数
+        Total int `json:"total"`           // 总条数
+        Data []TaskList `json:"data"`      // 具体数据
+    }
+
+    TaskList {
+        Id string `json:"id"`                               // 任务ID
+        ProcessName string `json:"processName"`             // 任务名称
+        TaskName string `json:"taskName"`                   // 任务名称
+        ProcessInstanceId string `json:"processInstanceId"` // 流程实例ID
+        CreateTime string `json:"createTime"`               // 任务创建时间
+    }
+
+    TaskDetailResponse {
+        Form []Form `json:"form"`         // 填写的表单
+        History []Action `json:"history"` // 历史流转
+        Event []Event `json:"event"`      // 操作日志
+    }
+
+    Form {
+        Id string `json:"id"` // 表单ID
+        Name string `json:"name"` // 表单名
+        Type string `json:"type"` // 表单格式
+        Value interface{} `json:"value"` // 表单值
+    }
+
+    Action {
+        ActionName string `json:"actionName"`       // 执行步骤
+        HandelUser string `json:"handelUser"`       // 操作人
+        CreateTime string `json:"createTime"`       // 开始时间
+        HandleTime string `json:"handleTime"`       // 操作时间
+        UseTime int `json:"useTime"`                // 共计操作时间
+        Comment []Comment `json:"comment"`          // 备注
+        Attachment []Attachment `json:"attachment"` // 附件
+    }
+
+    Event {
+        Id string `json:"id"`        // ID
+        Author string `json:"author"`// 操作人
+        Name string `json:"name"`    // 操作类型
+        Time string `json:"time"`    // 操作时间
+    }
+
+    Comment {
+        Id string `json:"id"`           // 备注ID
+        TaskId string `json:"taskId"`   // 任务ID
+        Message string `json:"message"` // 备注内容
+        Author string `json:"author"`   // 上传人
+        Time string `json:"time"`       // 备注时间
+    }
+
+    Attachment {
+        Id string `json:"id"`                   // 附件ID
+        TaskId string `json:"taskId"`           // 任务ID
+        Url string `json:"url"`                 // 附件URL
+        Author string `json:"author"`           // 上传人
+        Name string `json:"name"`               // 附件名
+        Description string `json:"description"` // 附件描述
+        Time string `json:"time"`               // 上传时间
+    }
+
+    Variable {
+        Name string `json:"name"`
+        Type string `json:"type"`
+        Value interface{} `json:"value"`
+        Scope string `json:"scope"`
+        ValueUrl string `json:"valueUrl"`
+    }
+
+    TaskDetailRequest {
+        Id string `path:"id"` // 任务ID
+    }
+
+    CompleteRequest {
+        Id string `path:"id"` // 任务ID
+    }
+
+    CompleteWithFormRequest {
+        Id string `path:"id"` // 任务ID
+        Properties []Properties `json:"properties"`
+    }
+
+    Properties {
+        Id string `json:"id"`
+        Value interface{} `json:"value"`
+    }
+
+    DelegateRequest {
+        Id string `path:"id"`      // 任务ID
+        ToUser int `json:"toUser"` // 被指派人的ID
+    }
+
+    AddAttachmentRequest {
+        Id string `path:"id"`                        // 任务ID
+        Name string `form:"name" binding:"required"` // 文件名(必填)
+        Description string `form:"description"`      // 描述
+        ExternalUrl string `form:"externalUrl"`      // 文件外链 (文件外链和文件(file)二选一)
+    }
+
+    DelAttachmentRequest {
+        TaskId string `path:"taskId"` // 任务ID
+        FileId string `path:"fileId"` // 文件ID
+    }
+
+    AddCommentRequest {
+        TaskId string `path:"taskId"`   // 任务ID
+        Message string `json:"message"` // 备注
+    }
+
+    DelCommentRequest {
+        TaskId string `path:"taskId"`       // 任务ID
+        CommentId string `path:"commentId"` // 备注ID
+    }
+
+    DownloadAttachmentRequest {
+        TaskId string `path:"taskId"`             // 任务ID
+        AttachmentId string `path:"attachmentId"` // 附件ID
+        FileName string `path:"fileName"`         // 附件名
+    }
+)
+
+
+@server(
+    jwt: Jwt
+    middleware: Auth
+    group: flowTask
+    swtags: 任务相关
+)
+
+service go-flow-admin {
+    @doc "我的任务"
+    @handler assignee
+    get /flow/task_assignee (TaskListRequest) returns (TaskListResponse)
+
+    @doc "我的候选任务"
+    @handler candidate
+    get /flow/task_candidate (TaskListRequest) returns (TaskListResponse)
+
+    @doc "任务详情"
+    @handler detail
+    get /flow/task/:id (TaskDetailRequest) returns (TaskDetailResponse)
+
+    @doc "完成任务"
+    @handler complete
+    put /flow/task_complete/:id (CompleteRequest)
+
+    @doc "提交表单完成任务"
+    @handler completeWithForm
+    put /flow/task_complete_with_form/:id (CompleteWithFormRequest)
+
+    @doc "指派任务"
+    @handler delegate
+    put /flow/task_delegate/:id (DelegateRequest)
+
+    @doc "添加任务附件"
+    @handler addAttachment
+    post /flow/attachment/:id (AddAttachmentRequest)
+
+    @doc "删除任务附件"
+    @handler delAttachment
+    delete /flow/attachment/:taskId/:fileId (DelAttachmentRequest)
+
+    @doc "下载任务附件"
+    @handler downloadAttachment
+    get /flow/attachment/:taskId/:attachmentId/:fileName (DownloadAttachmentRequest)
+
+    @doc "添加备注"
+    @handler addComment
+    post /flow/comment/:taskId (AddCommentRequest)
+
+    @doc "删除备注"
+    @handler delComment
+    delete /flow/comment/:taskId/:commentId (DelCommentRequest)
+}

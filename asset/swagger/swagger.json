@@ -1,0 +1,3668 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "后台管理系统",
+    "description": "标准后台管理系统，用户-角色-权限，jwt，casbin",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth": {
+      "get": {
+        "summary": "权限列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AuthListResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "后台权限相关"
+        ]
+      },
+      "post": {
+        "summary": "添加权限",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthAddRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台权限相关"
+        ]
+      }
+    },
+    "/auth/{id}": {
+      "delete": {
+        "summary": "删除权限",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthDeleteRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台权限相关"
+        ]
+      },
+      "put": {
+        "summary": "编辑权限",
+        "operationId": "edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthEditRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台权限相关"
+        ]
+      }
+    },
+    "/base/adminUsers": {
+      "get": {
+        "summary": "获取所有用户",
+        "operationId": "adminUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AdminUsersResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/base/auth": {
+      "get": {
+        "summary": "获取所有权限",
+        "operationId": "auth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BaseAuthResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/base/changeSelfPwd": {
+      "post": {
+        "summary": "修改自己的密码",
+        "operationId": "changeSelfPwd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeSelfPwdRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/base/flowcate": {
+      "get": {
+        "summary": "流程分类列表",
+        "operationId": "flowcate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowcateResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/base/role": {
+      "get": {
+        "summary": "获取所有角色",
+        "operationId": "role",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BaseRoleResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/base/userInfo": {
+      "get": {
+        "summary": "获取用户信息",
+        "operationId": "userInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserInfoResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "基础接口相关"
+        ]
+      }
+    },
+    "/code": {
+      "get": {
+        "summary": "获取验证码",
+        "operationId": "code",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CodeResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "登录相关"
+        ]
+      }
+    },
+    "/flow/attachment/{id}": {
+      "post": {
+        "summary": "添加任务附件",
+        "operationId": "addAttachment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddAttachmentRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/attachment/{taskId}/{attachmentId}/{fileName}": {
+      "get": {
+        "summary": "下载任务附件",
+        "operationId": "downloadAttachment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attachmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/attachment/{taskId}/{fileId}": {
+      "delete": {
+        "summary": "删除任务附件",
+        "operationId": "delAttachment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DelAttachmentRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/cate": {
+      "get": {
+        "summary": "流程分类列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowCateListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程分类相关"
+        ]
+      },
+      "post": {
+        "summary": "添加流程分类",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddFlowCateRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程分类相关"
+        ]
+      }
+    },
+    "/flow/cate/{id}": {
+      "delete": {
+        "summary": "删除流程分类",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteFlowCateRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程分类相关"
+        ]
+      },
+      "put": {
+        "summary": "编辑流程分类",
+        "operationId": "edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditFlowCateRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程分类相关"
+        ]
+      }
+    },
+    "/flow/comment/{taskId}": {
+      "post": {
+        "summary": "添加备注",
+        "operationId": "addComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddCommentRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/comment/{taskId}/{commentId}": {
+      "delete": {
+        "summary": "删除备注",
+        "operationId": "delComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DelCommentRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/form": {
+      "get": {
+        "summary": "流程外置表单列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowFormListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "description": " 表单名",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程外置表单相关"
+        ]
+      },
+      "post": {
+        "summary": "添加流程外置表单",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FlowFormAddRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程外置表单相关"
+        ]
+      }
+    },
+    "/flow/form/{id}": {
+      "get": {
+        "summary": "流程外置表单详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowFormDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程外置表单相关"
+        ]
+      },
+      "delete": {
+        "summary": "删除流程外置表单",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FlowFormDeleteRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程外置表单相关"
+        ]
+      },
+      "put": {
+        "summary": "编辑流程外置表单",
+        "operationId": "edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FlowFormEditRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程外置表单相关"
+        ]
+      }
+    },
+    "/flow/proc_inst": {
+      "get": {
+        "summary": "全部流程",
+        "operationId": "all",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ProcessInstanceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "processName",
+            "description": " 流程名称",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "description": " 流程开始时间区间",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
+            "description": " 流程开始时间区间",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程实例相关"
+        ]
+      }
+    },
+    "/flow/proc_inst/{id}": {
+      "get": {
+        "summary": "流程详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ProcessInstanceDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程实例相关"
+        ]
+      }
+    },
+    "/flow/process": {
+      "get": {
+        "summary": "流程列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListProcessResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "description": " 流程名称",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程定义相关"
+        ]
+      },
+      "post": {
+        "summary": "添加流程",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddProcessResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddProcessRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程定义相关"
+        ]
+      }
+    },
+    "/flow/process/start/{id}": {
+      "post": {
+        "summary": "启动流程",
+        "operationId": "start",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StartProcessRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程定义相关"
+        ]
+      }
+    },
+    "/flow/process/{id}": {
+      "get": {
+        "summary": "流程详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetailProcessResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程定义相关"
+        ]
+      },
+      "delete": {
+        "summary": "删除流程",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteProcessRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "流程定义相关"
+        ]
+      }
+    },
+    "/flow/task/{id}": {
+      "get": {
+        "summary": "任务详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TaskDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/task_assignee": {
+      "get": {
+        "summary": "我的任务",
+        "operationId": "assignee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TaskListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/task_candidate": {
+      "get": {
+        "summary": "我的候选任务",
+        "operationId": "candidate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TaskListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/task_complete/{id}": {
+      "put": {
+        "summary": "完成任务",
+        "operationId": "complete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompleteRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/task_complete_with_form/{id}": {
+      "put": {
+        "summary": "提交表单完成任务",
+        "operationId": "completeWithForm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompleteWithFormRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/flow/task_delegate/{id}": {
+      "put": {
+        "summary": "指派任务",
+        "operationId": "delegate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DelegateRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "任务相关"
+        ]
+      }
+    },
+    "/generate": {
+      "get": {
+        "summary": "表结构列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GenerateListResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "代码生成相关"
+        ]
+      },
+      "post": {
+        "summary": "生成前端文件",
+        "operationId": "generate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GenerateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GenerateRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "代码生成相关"
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "登录",
+        "operationId": "login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "登录相关"
+        ]
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "退出登录",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "登录相关"
+        ]
+      }
+    },
+    "/role": {
+      "get": {
+        "summary": "角色列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台角色相关"
+        ]
+      },
+      "post": {
+        "summary": "添加角色",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleAddRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台角色相关"
+        ]
+      }
+    },
+    "/role/{id}": {
+      "get": {
+        "summary": "角色详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台角色相关"
+        ]
+      },
+      "delete": {
+        "summary": "删除角色",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleDeleteRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台角色相关"
+        ]
+      },
+      "put": {
+        "summary": "编辑角色",
+        "operationId": "edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleEditRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台角色相关"
+        ]
+      }
+    },
+    "/user": {
+      "get": {
+        "summary": "用户列表",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "description": " 分页",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "description": " 每页条数",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台用户相关"
+        ]
+      },
+      "post": {
+        "summary": "添加用户",
+        "operationId": "add",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserAddRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台用户相关"
+        ]
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "summary": "用户详情",
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台用户相关"
+        ]
+      },
+      "delete": {
+        "summary": "删除用户",
+        "operationId": "del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDeleteRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台用户相关"
+        ]
+      },
+      "put": {
+        "summary": "编辑用户",
+        "operationId": "edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserEditRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "后台用户相关"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Action": {
+      "type": "object",
+      "properties": {
+        "actionName": {
+          "type": "string",
+          "description": " 执行步骤"
+        },
+        "handelUser": {
+          "type": "string",
+          "description": " 操作人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 开始时间"
+        },
+        "handleTime": {
+          "type": "string",
+          "description": " 操作时间"
+        },
+        "useTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 共计操作时间"
+        },
+        "comment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          },
+          "description": " 备注"
+        },
+        "attachment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attachment"
+          },
+          "description": " 附件"
+        }
+      },
+      "title": "Action",
+      "required": [
+        "actionName",
+        "handelUser",
+        "createTime",
+        "handleTime",
+        "useTime",
+        "comment",
+        "attachment"
+      ]
+    },
+    "AddAttachmentRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 文件名(必填)"
+        },
+        "description": {
+          "type": "string",
+          "description": " 描述"
+        },
+        "externalUrl": {
+          "type": "string",
+          "description": " 文件外链 (文件外链和文件(file)二选一)"
+        }
+      },
+      "title": "AddAttachmentRequest",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "externalUrl"
+      ]
+    },
+    "AddCommentRequest": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "message": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "AddCommentRequest",
+      "required": [
+        "taskId",
+        "message"
+      ]
+    },
+    "AddFlowCateRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 分类名"
+        }
+      },
+      "title": "AddFlowCateRequest",
+      "required": [
+        "name"
+      ]
+    },
+    "AddProcessRequest": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": " 文件名"
+        },
+        "category": {
+          "type": "string",
+          "description": " 所属分类"
+        },
+        "xml": {
+          "type": "string",
+          "description": " 流程定义"
+        }
+      },
+      "title": "AddProcessRequest",
+      "required": [
+        "fileName",
+        "category",
+        "xml"
+      ]
+    },
+    "AddProcessResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 业务流程ID"
+        }
+      },
+      "title": "AddProcessResponse",
+      "required": [
+        "id"
+      ]
+    },
+    "AdminUsers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 后台用户ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 用户ID"
+        }
+      },
+      "title": "AdminUsers",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "AdminUsersResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdminUsers"
+          },
+          "description": " 后台用户列表"
+        }
+      },
+      "title": "AdminUsersResponse",
+      "required": [
+        "list"
+      ]
+    },
+    "Attachment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 附件ID"
+        },
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "url": {
+          "type": "string",
+          "description": " 附件URL"
+        },
+        "author": {
+          "type": "string",
+          "description": " 上传人"
+        },
+        "name": {
+          "type": "string",
+          "description": " 附件名"
+        },
+        "description": {
+          "type": "string",
+          "description": " 附件描述"
+        },
+        "time": {
+          "type": "string",
+          "description": " 上传时间"
+        }
+      },
+      "title": "Attachment",
+      "required": [
+        "id",
+        "taskId",
+        "url",
+        "author",
+        "name",
+        "description",
+        "time"
+      ]
+    },
+    "Auth": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string",
+          "description": " 权限标识"
+        },
+        "name": {
+          "type": "string",
+          "description": " 节点名"
+        },
+        "isMenu": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 是否是菜单栏 0：否 1：是"
+        },
+        "api": {
+          "type": "string",
+          "description": " 接口"
+        },
+        "action": {
+          "type": "string",
+          "description": " 操作方法"
+        },
+        "child": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Auth"
+          },
+          "description": " 子节点"
+        }
+      },
+      "title": "Auth",
+      "required": [
+        "id",
+        "pid",
+        "key",
+        "name",
+        "isMenu",
+        "api",
+        "action",
+        "child"
+      ]
+    },
+    "AuthAddRequest": {
+      "type": "object",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 节点名"
+        },
+        "key": {
+          "type": "string",
+          "description": " 权限标识"
+        },
+        "isMenu": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 是否是菜单栏 0：否 1：是"
+        },
+        "api": {
+          "type": "string",
+          "description": " 接口"
+        },
+        "action": {
+          "type": "string",
+          "description": " 操作方法"
+        }
+      },
+      "title": "AuthAddRequest",
+      "required": [
+        "pid",
+        "min=0",
+        "name",
+        "key",
+        "isMenu",
+        "oneof=0 1",
+        "api",
+        "action"
+      ]
+    },
+    "AuthDeleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "AuthDeleteRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "AuthEditRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string",
+          "description": " 权限标识"
+        },
+        "name": {
+          "type": "string",
+          "description": " 节点名"
+        },
+        "isMenu": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 是否是菜单栏 0：否 1：是"
+        },
+        "api": {
+          "type": "string",
+          "description": " 接口"
+        },
+        "action": {
+          "type": "string",
+          "description": " 操作方法"
+        }
+      },
+      "title": "AuthEditRequest",
+      "required": [
+        "id",
+        "pid",
+        "min=0",
+        "key",
+        "name",
+        "isMenu",
+        "oneof=0 1",
+        "api",
+        "action"
+      ]
+    },
+    "AuthListResponse": {
+      "type": "object",
+      "properties": {
+        "tree": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Auth"
+          },
+          "description": " 节点树"
+        }
+      },
+      "title": "AuthListResponse",
+      "required": [
+        "tree"
+      ]
+    },
+    "BaseAuth": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 节点名"
+        },
+        "child": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseAuth"
+          },
+          "description": " 子节点"
+        }
+      },
+      "title": "BaseAuth",
+      "required": [
+        "id",
+        "pid",
+        "name",
+        "child"
+      ]
+    },
+    "BaseAuthResponse": {
+      "type": "object",
+      "properties": {
+        "tree": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseAuth"
+          },
+          "description": " 节点树"
+        }
+      },
+      "title": "BaseAuthResponse",
+      "required": [
+        "tree"
+      ]
+    },
+    "BaseRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "BaseRole",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "BaseRoleResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseRole"
+          }
+        }
+      },
+      "title": "BaseRoleResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "ChangeSelfPwdRequest": {
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "type": "string",
+          "description": " 老密码"
+        },
+        "newPassword": {
+          "type": "string",
+          "description": " 新密码"
+        },
+        "confirmPassword": {
+          "type": "string",
+          "description": " 确认密码"
+        }
+      },
+      "title": "ChangeSelfPwdRequest",
+      "required": [
+        "oldPassword",
+        "required",
+        "newPassword",
+        "confirmPassword"
+      ]
+    },
+    "CodeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 在登录时提交"
+        },
+        "image": {
+          "type": "string",
+          "description": " 验证码 base64 格式"
+        }
+      },
+      "title": "CodeResponse",
+      "required": [
+        "id",
+        "image"
+      ]
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 备注ID"
+        },
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "message": {
+          "type": "string",
+          "description": " 备注内容"
+        },
+        "author": {
+          "type": "string",
+          "description": " 上传人"
+        },
+        "time": {
+          "type": "string",
+          "description": " 备注时间"
+        }
+      },
+      "title": "Comment",
+      "required": [
+        "id",
+        "taskId",
+        "message",
+        "author",
+        "time"
+      ]
+    },
+    "CompleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        }
+      },
+      "title": "CompleteRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "CompleteWithFormRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Properties"
+          }
+        }
+      },
+      "title": "CompleteWithFormRequest",
+      "required": [
+        "id",
+        "properties"
+      ]
+    },
+    "DelAttachmentRequest": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "fileId": {
+          "type": "string",
+          "description": " 文件ID"
+        }
+      },
+      "title": "DelAttachmentRequest",
+      "required": [
+        "taskId",
+        "fileId"
+      ]
+    },
+    "DelCommentRequest": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "commentId": {
+          "type": "string",
+          "description": " 备注ID"
+        }
+      },
+      "title": "DelCommentRequest",
+      "required": [
+        "taskId",
+        "commentId"
+      ]
+    },
+    "DelegateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "toUser": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 被指派人的ID"
+        }
+      },
+      "title": "DelegateRequest",
+      "required": [
+        "id",
+        "toUser"
+      ]
+    },
+    "DeleteFlowCateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " ID"
+        }
+      },
+      "title": "DeleteFlowCateRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteProcessRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 业务流程ID"
+        }
+      },
+      "title": "DeleteProcessRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "DetailProcessRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 流程ID"
+        }
+      },
+      "title": "DetailProcessRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "DetailProcessResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 流程id"
+        },
+        "name": {
+          "type": "string",
+          "description": " 流程name"
+        },
+        "xml": {
+          "type": "string",
+          "description": " 流程XML"
+        }
+      },
+      "title": "DetailProcessResponse",
+      "required": [
+        "id",
+        "name",
+        "xml"
+      ]
+    },
+    "DownloadAttachmentRequest": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "attachmentId": {
+          "type": "string",
+          "description": " 附件ID"
+        },
+        "fileName": {
+          "type": "string",
+          "description": " 附件名"
+        }
+      },
+      "title": "DownloadAttachmentRequest",
+      "required": [
+        "taskId",
+        "attachmentId",
+        "fileName"
+      ]
+    },
+    "EditFlowCateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 分类名"
+        }
+      },
+      "title": "EditFlowCateRequest",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " ID"
+        },
+        "author": {
+          "type": "string",
+          "description": " 操作人"
+        },
+        "name": {
+          "type": "string",
+          "description": " 操作类型"
+        },
+        "time": {
+          "type": "string",
+          "description": " 操作时间"
+        }
+      },
+      "title": "Event",
+      "required": [
+        "id",
+        "author",
+        "name",
+        "time"
+      ]
+    },
+    "FlowCateData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 分类名"
+        }
+      },
+      "title": "FlowCateData",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "FlowCateList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 分类名"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        }
+      },
+      "title": "FlowCateList",
+      "required": [
+        "id",
+        "name",
+        "createTime"
+      ]
+    },
+    "FlowCateListRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        }
+      },
+      "title": "FlowCateListRequest",
+      "required": [
+        "page",
+        "pageSize"
+      ]
+    },
+    "FlowCateListResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FlowCateList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "FlowCateListResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "FlowFormAddRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 表单用途"
+        },
+        "rule": {
+          "type": "string",
+          "description": " 表单回显使用"
+        },
+        "option": {
+          "type": "string",
+          "description": " 表单回显使用"
+        }
+      },
+      "title": "FlowFormAddRequest",
+      "required": [
+        "name",
+        "rule",
+        "option"
+      ]
+    },
+    "FlowFormDeleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "FlowFormDeleteRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "FlowFormDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "FlowFormDetailRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "FlowFormDetailResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 表单用途"
+        },
+        "rule": {
+          "type": "string",
+          "description": " 表单回显使用"
+        },
+        "option": {
+          "type": "string",
+          "description": " 表单回显使用"
+        }
+      },
+      "title": "FlowFormDetailResponse",
+      "required": [
+        "id",
+        "name",
+        "rule",
+        "option"
+      ]
+    },
+    "FlowFormEditRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 表单用途"
+        },
+        "rule": {
+          "type": "string",
+          "description": " 表单回显使用"
+        },
+        "option": {
+          "type": "string",
+          "description": " 表单回显使用"
+        }
+      },
+      "title": "FlowFormEditRequest",
+      "required": [
+        "id",
+        "name",
+        "rule",
+        "option"
+      ]
+    },
+    "FlowFormList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 表单用途"
+        }
+      },
+      "title": "FlowFormList",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "FlowFormListRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "name": {
+          "type": "string",
+          "description": " 表单名"
+        }
+      },
+      "title": "FlowFormListRequest"
+    },
+    "FlowFormListResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FlowFormList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "FlowFormListResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "FlowcateResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FlowCateData"
+          },
+          "description": " 分类"
+        }
+      },
+      "title": "FlowcateResponse",
+      "required": [
+        "list"
+      ]
+    },
+    "Form": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 表单ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 表单名"
+        },
+        "type": {
+          "type": "string",
+          "description": " 表单格式"
+        },
+        "value": {
+          "type": "object",
+          "description": " 表单值"
+        }
+      },
+      "title": "Form",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "value"
+      ]
+    },
+    "GenerateListResponse": {
+      "type": "object",
+      "properties": {
+        "tables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "GenerateListResponse",
+      "required": [
+        "tables"
+      ]
+    },
+    "GenerateRequest": {
+      "type": "object",
+      "properties": {
+        "table": {
+          "type": "string",
+          "description": " 表名"
+        }
+      },
+      "title": "GenerateRequest",
+      "required": [
+        "table"
+      ]
+    },
+    "GenerateResponse": {
+      "type": "object",
+      "properties": {
+        "js": {
+          "type": "string",
+          "description": " js 文件内容"
+        },
+        "vue": {
+          "type": "string",
+          "description": " vue 文件内容"
+        },
+        "api": {
+          "type": "string",
+          "description": " api 文件内容"
+        }
+      },
+      "title": "GenerateResponse",
+      "required": [
+        "js",
+        "vue",
+        "api"
+      ]
+    },
+    "ListProcess": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 流程定义ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 流程分类"
+        },
+        "deploymentId": {
+          "type": "string",
+          "description": " 流程部署ID"
+        },
+        "key": {
+          "type": "string",
+          "description": " 流程KEY"
+        },
+        "category": {
+          "type": "string",
+          "description": "流程分类"
+        },
+        "suspended": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 流程状态"
+        },
+        "version": {
+          "type": "string",
+          "description": " 流程版本"
+        }
+      },
+      "title": "ListProcess",
+      "required": [
+        "id",
+        "name",
+        "deploymentId",
+        "key",
+        "category",
+        "suspended",
+        "version"
+      ]
+    },
+    "ListProcessRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "name": {
+          "type": "string",
+          "description": " 流程名称"
+        }
+      },
+      "title": "ListProcessRequest",
+      "required": [
+        "page",
+        "pageSize",
+        "name"
+      ]
+    },
+    "ListProcessResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListProcess"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "ListProcessResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "code": {
+          "type": "string",
+          "description": " 验证码"
+        },
+        "codeId": {
+          "type": "string",
+          "description": " 获取验证码时的ID"
+        }
+      },
+      "title": "LoginRequest",
+      "required": [
+        "username",
+        "password",
+        "required",
+        "code",
+        "codeId"
+      ]
+    },
+    "LoginResponse": {
+      "type": "object",
+      "properties": {
+        "jwt": {
+          "type": "string",
+          "description": " jwt 凭证"
+        }
+      },
+      "title": "LoginResponse",
+      "required": [
+        "jwt"
+      ]
+    },
+    "ProcessInstanceDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "ProcessInstanceDetailRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "ProcessInstanceDetailResponse": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskHistory"
+          },
+          "description": " 历史流转"
+        }
+      },
+      "title": "ProcessInstanceDetailResponse",
+      "required": [
+        "history"
+      ]
+    },
+    "ProcessInstanceList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " ID"
+        },
+        "processName": {
+          "type": "string",
+          "description": " 流程名称"
+        },
+        "startTime": {
+          "type": "string",
+          "description": " 流程开始时间"
+        },
+        "endTime": {
+          "type": "string",
+          "description": " 流程结束时间"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 流程使用时间"
+        },
+        "currentTask": {
+          "type": "string",
+          "description": " 当前节点"
+        },
+        "currentUser": {
+          "type": "string",
+          "description": " 当前节点执行人"
+        }
+      },
+      "title": "ProcessInstanceList",
+      "required": [
+        "id",
+        "processName",
+        "startTime",
+        "endTime",
+        "duration",
+        "currentTask",
+        "currentUser"
+      ]
+    },
+    "ProcessInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "processName": {
+          "type": "string",
+          "description": " 流程名称"
+        },
+        "startTime": {
+          "type": "string",
+          "description": " 流程开始时间区间"
+        },
+        "endTime": {
+          "type": "string",
+          "description": " 流程开始时间区间"
+        }
+      },
+      "title": "ProcessInstanceRequest",
+      "required": [
+        "page",
+        "pageSize",
+        "processName",
+        "startTime",
+        "endTime"
+      ]
+    },
+    "ProcessInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessInstanceList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "ProcessInstanceResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "Properties": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "title": "Properties",
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "RoleAddRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 角色名"
+        },
+        "auth": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": " 权限ID"
+        }
+      },
+      "title": "RoleAddRequest",
+      "required": [
+        "name",
+        "auth",
+        "required"
+      ]
+    },
+    "RoleDeleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "RoleDeleteRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "RoleDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "RoleDetailRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "RoleDetailResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名"
+        },
+        "auth": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": " 权限ID"
+        }
+      },
+      "title": "RoleDetailResponse",
+      "required": [
+        "id",
+        "name",
+        "auth"
+      ]
+    },
+    "RoleEditRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名"
+        },
+        "auth": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": " 权限ID"
+        }
+      },
+      "title": "RoleEditRequest",
+      "required": [
+        "id",
+        "name",
+        "auth",
+        "required"
+      ]
+    },
+    "RoleList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名"
+        }
+      },
+      "title": "RoleList",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "RoleListRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        }
+      },
+      "title": "RoleListRequest",
+      "required": [
+        "page",
+        "pageSize"
+      ]
+    },
+    "RoleListResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "RoleListResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "StartProcessRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 流程ID"
+        }
+      },
+      "title": "StartProcessRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "TaskDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        }
+      },
+      "title": "TaskDetailRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "TaskDetailResponse": {
+      "type": "object",
+      "properties": {
+        "form": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Form"
+          },
+          "description": " 填写的表单"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Action"
+          },
+          "description": " 历史流转"
+        },
+        "event": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          },
+          "description": " 操作日志"
+        }
+      },
+      "title": "TaskDetailResponse",
+      "required": [
+        "form",
+        "history",
+        "event"
+      ]
+    },
+    "TaskHistory": {
+      "type": "object",
+      "properties": {
+        "actionName": {
+          "type": "string",
+          "description": " 执行步骤"
+        },
+        "handelUser": {
+          "type": "string",
+          "description": " 操作人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 开始时间"
+        },
+        "handleTime": {
+          "type": "string",
+          "description": " 操作时间"
+        },
+        "useTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 共计操作时间"
+        },
+        "comment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          },
+          "description": " 备注"
+        },
+        "attachment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attachment"
+          },
+          "description": " 附件"
+        },
+        "form": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Form"
+          },
+          "description": " 填写的表单"
+        }
+      },
+      "title": "TaskHistory",
+      "required": [
+        "actionName",
+        "handelUser",
+        "createTime",
+        "handleTime",
+        "useTime",
+        "comment",
+        "attachment",
+        "form"
+      ]
+    },
+    "TaskList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": " 任务ID"
+        },
+        "processName": {
+          "type": "string",
+          "description": " 任务名称"
+        },
+        "taskName": {
+          "type": "string",
+          "description": " 任务名称"
+        },
+        "processInstanceId": {
+          "type": "string",
+          "description": " 流程实例ID"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 任务创建时间"
+        }
+      },
+      "title": "TaskList",
+      "required": [
+        "id",
+        "processName",
+        "taskName",
+        "processInstanceId",
+        "createTime"
+      ]
+    },
+    "TaskListRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        }
+      },
+      "title": "TaskListRequest",
+      "required": [
+        "page",
+        "pageSize"
+      ]
+    },
+    "TaskListResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "TaskListResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "UserAddRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "realname": {
+          "type": "string",
+          "description": " 真实姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 角色ID"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 状态 0:未启用 1:正常"
+        }
+      },
+      "title": "UserAddRequest",
+      "required": [
+        "username",
+        "realname",
+        "phone",
+        "roleId",
+        "password",
+        "required",
+        "status",
+        "oneof=0 1"
+      ]
+    },
+    "UserDeleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UserDeleteRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "UserDetailRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UserDetailRequest",
+      "required": [
+        "id"
+      ]
+    },
+    "UserDetailResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "realname": {
+          "type": "string",
+          "description": " 真实姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 角色ID"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 状态 0:未启用 1:正常"
+        }
+      },
+      "title": "UserDetailResponse",
+      "required": [
+        "id",
+        "username",
+        "realname",
+        "phone",
+        "roleId",
+        "status"
+      ]
+    },
+    "UserEditRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "realname": {
+          "type": "string",
+          "description": " 真实姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 角色ID"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 状态 0:未启用 1:正常"
+        }
+      },
+      "title": "UserEditRequest",
+      "required": [
+        "id",
+        "username",
+        "realname",
+        "phone",
+        "roleId",
+        "password",
+        "status",
+        "oneof=0 1"
+      ]
+    },
+    "UserInfoResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 用户ID"
+        },
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "realname": {
+          "type": "string",
+          "description": " 真实姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "rolename": {
+          "type": "string",
+          "description": " 角色名"
+        },
+        "authkeys": {
+          "type": "string",
+          "description": " 角色权限KEY"
+        }
+      },
+      "title": "UserInfoResponse",
+      "required": [
+        "id",
+        "username",
+        "realname",
+        "phone",
+        "rolename",
+        "authkeys"
+      ]
+    },
+    "UserList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "realname": {
+          "type": "string",
+          "description": " 真实姓名"
+        },
+        "rolename": {
+          "type": "string",
+          "description": " 角色名"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 状态 0:未启用 1:正常"
+        },
+        "phone": {
+          "type": "string",
+          "description": " 手机号"
+        }
+      },
+      "title": "UserList",
+      "required": [
+        "id",
+        "username",
+        "realname",
+        "rolename",
+        "status",
+        "phone"
+      ]
+    },
+    "UserListRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        }
+      },
+      "title": "UserListRequest",
+      "required": [
+        "page",
+        "pageSize"
+      ]
+    },
+    "UserListResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分页"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 每页条数"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 总条数"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserList"
+          },
+          "description": " 具体数据"
+        }
+      },
+      "title": "UserListResponse",
+      "required": [
+        "page",
+        "pageSize",
+        "total",
+        "data"
+      ]
+    },
+    "Variable": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "valueUrl": {
+          "type": "string"
+        }
+      },
+      "title": "Variable",
+      "required": [
+        "name",
+        "type",
+        "value",
+        "scope",
+        "valueUrl"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

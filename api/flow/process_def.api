@@ -1,0 +1,84 @@
+syntax = "v1"
+
+type (
+    ListProcessRequest {
+        Page int `form:"page"`         // 分页
+        PageSize int `form:"pageSize"` // 每页条数
+        Name string `form:"name"`      // 流程名称
+    }
+
+    ListProcessResponse {
+        Page int `json:"page"`             // 分页
+        PageSize int `json:"pageSize"`     // 每页条数
+        Total int `json:"total"`           // 总条数
+        Data []ListProcess `json:"data"`   // 具体数据
+    }
+
+    ListProcess {
+        Id string `json:"id"`                     // 流程定义ID
+        Name string `json:"name"`                 // 流程分类
+        DeploymentId string `json:"deploymentId"` // 流程部署ID
+        Key string `json:"key"`                   // 流程KEY
+        Category string `json:"category"`         //流程分类
+        Suspended bool `json:"suspended"`         // 流程状态
+        Version string `json:"version"`           // 流程版本
+    }
+
+    DetailProcessRequest {
+        Id string `path:"id"` // 流程ID
+    }
+
+    DetailProcessResponse {
+        Id string `json:"id"`     // 流程id
+        Name string `json:"name"` // 流程name
+        Xml string `json:"xml"`   // 流程XML
+    }
+
+    AddProcessRequest {
+        FileName string `json:"fileName" binding:"required"` // 文件名
+        Category string `json:"category"`                    // 所属分类
+        Xml string `json:"xml" binding:"required"`           // 流程定义
+    }
+
+    AddProcessResponse {
+        Id string `json:"id"` // 业务流程ID
+    }
+
+    DeleteProcessRequest {
+        Id string `path:"id"` // 业务流程ID
+    }
+
+    StartProcessRequest {
+        Id string `path:"id"` // 流程ID
+    }
+)
+
+
+@server(
+    jwt: Jwt
+    middleware: Auth
+    group: flowProcess
+    swtags: 流程定义相关
+)
+
+service go-flow-admin {
+    @doc "流程列表"
+    @handler list
+    get /flow/process (ListProcessRequest) returns (ListProcessResponse)
+
+    @doc "流程详情"
+    @handler detail
+    get /flow/process/:id (DetailProcessRequest) returns (DetailProcessResponse)
+
+    @doc "添加流程"
+    @handler add
+    post /flow/process (AddProcessRequest) returns (AddProcessResponse)
+
+    @doc "删除流程"
+    @handler del
+    delete /flow/process/:id (DeleteProcessRequest)
+
+    @doc "启动流程"
+    @handler start
+    post /flow/process/start/:id (StartProcessRequest)
+}

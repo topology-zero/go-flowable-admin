@@ -1,0 +1,25 @@
+syntax = "v1"
+
+type (
+    FlowcateResponse {
+        List []FlowCateData `json:"list"` // 分类
+    }
+
+    FlowCateData {
+        Id int `json:"id"` // ID
+        Name string `json:"name"` // 分类名
+    }
+)
+
+@server(
+    jwt: Jwt
+    group: flowBase
+    prefix: /base
+    swtags: 基础接口相关
+)
+
+service go-flow-admin {
+    @doc "流程分类列表"
+    @handler flowcate
+    get /flowcate returns (FlowcateResponse)
+}

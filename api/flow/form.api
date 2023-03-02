@@ -1,0 +1,79 @@
+syntax = "v1"
+
+type (
+    FlowFormListRequest {
+        Page int `form:"page,optional"`         // 分页
+        PageSize int `form:"pageSize,optional"` // 每页条数
+        Name string `form:"name,optional"`      // 表单名
+    }
+
+    FlowFormListResponse {
+        Page int `json:"page"`             // 分页
+        PageSize int `json:"pageSize"`     // 每页条数
+        Total int `json:"total"`           // 总条数
+        Data []FlowFormList `json:"data"`  // 具体数据
+    }
+
+    FlowFormList {
+        Id int  `json:"id"`
+        Name string `json:"name"` // 表单用途
+    }
+
+    FlowFormDetailRequest {
+        Id int `path:"id"`
+    }
+
+    FlowFormDetailResponse {
+        Id int `json:"id"`
+        Name string `json:"name"`     // 表单用途
+        Rule string `json:"rule"`     // 表单回显使用
+        Option string `json:"option"` // 表单回显使用
+    }
+
+    FlowFormAddRequest {
+        Name string `json:"name" binding:"required"`     // 表单用途
+        Rule string `json:"rule" binding:"required"`     // 表单回显使用
+        Option string `json:"option" binding:"required"` // 表单回显使用
+    }
+
+    FlowFormEditRequest {
+        Id int `path:"id"`
+        Name string `json:"name" binding:"required"`     // 表单用途
+        Rule string `json:"rule" binding:"required"`     // 表单回显使用
+        Option string `json:"option" binding:"required"` // 表单回显使用
+    }
+
+    FlowFormDeleteRequest {
+        Id int `path:"id"`
+    }
+)
+
+@server(
+    jwt: Jwt
+    middleware: Auth
+    group: FlowForm
+    swtags: 流程外置表单相关
+)
+
+
+service go-flow-admin {
+    @doc "流程外置表单列表"
+    @handler list
+    get /flow/form (FlowFormListRequest) returns (FlowFormListResponse)
+
+    @doc "流程外置表单详情"
+    @handler detail
+    get /flow/form/:id (FlowFormDetailRequest) returns (FlowFormDetailResponse)
+
+    @doc "添加流程外置表单"
+    @handler add
+    post /flow/form (FlowFormAddRequest)
+
+    @doc "编辑流程外置表单"
+    @handler edit
+    put /flow/form/:id (FlowFormEditRequest)
+
+    @doc "删除流程外置表单"
+    @handler del
+    delete /flow/form/:id (FlowFormDeleteRequest)
+}

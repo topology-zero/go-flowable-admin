@@ -1,0 +1,64 @@
+syntax = "v1"
+
+type (
+    ProcessInstanceRequest {
+        Page int `form:"page"`                  // 分页
+        PageSize int `form:"pageSize"`          // 每页条数
+        ProcessName string `form:"processName"` // 流程名称
+        StartTime string `form:"startTime"`     // 流程开始时间区间
+        EndTime string `form:"endTime"`         // 流程开始时间区间
+    }
+
+    ProcessInstanceResponse {
+        Page int `json:"page"`                        // 分页
+        PageSize int `json:"pageSize"`                // 每页条数
+        Total int `json:"total"`                      // 总条数
+        Data []ProcessInstanceList `json:"data"`      // 具体数据
+    }
+
+    ProcessInstanceList {
+        Id string `json:"id"`                   // ID
+        ProcessName string `json:"processName"` // 流程名称
+        StartTime string `json:"startTime"`     // 流程开始时间
+        EndTime string `json:"endTime"`         // 流程结束时间
+        Duration int `json:"duration"`          // 流程使用时间
+        CurrentTask string `json:"currentTask"` // 当前节点
+        CurrentUser string `json:"currentUser"` // 当前节点执行人
+    }
+
+    ProcessInstanceDetailResponse {
+        History []TaskHistory `json:"history"`  // 历史流转
+    }
+
+    TaskHistory {
+        ActionName string `json:"actionName"`       // 执行步骤
+        HandelUser string `json:"handelUser"`       // 操作人
+        CreateTime string `json:"createTime"`       // 开始时间
+        HandleTime string `json:"handleTime"`       // 操作时间
+        UseTime int `json:"useTime"`                // 共计操作时间
+        Comment []Comment `json:"comment"`          // 备注
+        Attachment []Attachment `json:"attachment"` // 附件
+        Form []Form `json:"form"`                   // 填写的表单
+    }
+
+    ProcessInstanceDetailRequest {
+        Id string `path:"id"`
+    }
+)
+
+@server(
+    jwt: Jwt
+    middleware: Auth
+    group: flowProcessInstance
+    swtags: 流程实例相关
+)
+
+service go-flow-admin {
+    @doc "全部流程"
+    @handler all
+    get /flow/proc_inst (ProcessInstanceRequest) returns (ProcessInstanceResponse)
+
+    @doc "流程详情"
+    @handler detail
+    get /flow/proc_inst/:id (ProcessInstanceDetailRequest) returns (ProcessInstanceDetailResponse)
+}

@@ -218,7 +218,7 @@
         ]
       }
     },
-    "/base/flowformveiw/{key}/{version}": {
+    "/base/flowformveiw/{id}": {
       "get": {
         "summary": "流程表单预览",
         "operationId": "flowformveiw",
@@ -232,13 +232,7 @@
         },
         "parameters": [
           {
-            "name": "key",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "version",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1982,6 +1976,9 @@
     "BaseFlowFormList": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "key": {
           "type": "string"
         },
@@ -1998,6 +1995,7 @@
       },
       "title": "BaseFlowFormList",
       "required": [
+        "id",
         "key",
         "name",
         "version",
@@ -2606,18 +2604,13 @@
     "FlowFormViewRequest": {
       "type": "object",
       "properties": {
-        "key": {
+        "id": {
           "type": "string"
-        },
-        "version": {
-          "type": "integer",
-          "format": "int32"
         }
       },
       "title": "FlowFormViewRequest",
       "required": [
-        "key",
-        "version"
+        "id"
       ]
     },
     "FlowFormViewResponse": {

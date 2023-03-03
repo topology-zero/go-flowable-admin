@@ -15,6 +15,7 @@ type (
     }
 
     BaseFlowFormList {
+        Id string `json:"id"`
         Key string `json:"key"`
         Name string  `json:"name"`
         Version int `json:"version"`
@@ -22,8 +23,7 @@ type (
     }
 
     FlowFormViewRequest {
-        Key string `path:"key"`
-        Version int `path:"version"`
+        Id string `path:"id"`
     }
 
     FlowFormViewResponse {
@@ -50,5 +50,5 @@ service go-flow-admin {
 
     @doc "流程表单预览"
     @handler flowformveiw
-    get /flowformveiw/:key/:version (FlowFormViewRequest) returns (FlowFormViewResponse)
+    get /flowformveiw/:id (FlowFormViewRequest) returns (FlowFormViewResponse)
 }

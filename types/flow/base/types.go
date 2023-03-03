@@ -15,6 +15,7 @@ type FlowFormResponse struct {
 }
 
 type BaseFlowFormList struct {
+	Id          string `json:"id"`
 	Key         string `json:"key"`
 	Name        string `json:"name"`
 	Version     int    `json:"version"`
@@ -22,8 +23,7 @@ type BaseFlowFormList struct {
 }
 
 type FlowFormViewRequest struct {
-	Key     string `uri:"key"`
-	Version int    `uri:"version"`
+	Id string `uri:"id"`
 }
 
 type FlowFormViewResponse struct {

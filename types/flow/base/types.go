@@ -9,3 +9,24 @@ type FlowCateData struct {
 	Id   int    `json:"id"`   // ID
 	Name string `json:"name"` // 分类名
 }
+
+type FlowFormResponse struct {
+	List []BaseFlowFormList `json:"list"`
+}
+
+type BaseFlowFormList struct {
+	Key        string `json:"key"`
+	Name       string `json:"name"`
+	Version    int    `json:"version"`
+	Descrption string `json:"descrption"`
+}
+
+type FlowFormViewRequest struct {
+	Key     string `uri:"key"`
+	Version int    `uri:"version"`
+}
+
+type FlowFormViewResponse struct {
+	Rule   string `json:"rule"`
+	Option string `json:"option"`
+}

@@ -232,6 +232,64 @@
         ]
       }
     },
+    "/base/flowform": {
+      "get": {
+        "summary": "流程表单列表",
+        "operationId": "flowform",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowFormResponse"
+            }
+          }
+        },
+        "tags": [
+          "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/base/flowformveiw/{key}/{version}": {
+      "get": {
+        "summary": "流程表单预览",
+        "operationId": "flowformveiw",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FlowFormViewResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
     "/base/role": {
       "get": {
         "summary": "获取所有角色",
@@ -2142,6 +2200,31 @@
         "tree"
       ]
     },
+    "BaseFlowFormList": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "descrption": {
+          "type": "string"
+        }
+      },
+      "title": "BaseFlowFormList",
+      "required": [
+        "key",
+        "name",
+        "version",
+        "descrption"
+      ]
+    },
     "BaseRole": {
       "type": "object",
       "properties": {
@@ -2632,6 +2715,41 @@
         "pageSize",
         "total",
         "data"
+      ]
+    },
+    "FlowFormResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseFlowFormList"
+          }
+        }
+      },
+      "title": "FlowFormResponse",
+      "required": [
+        "list"
+      ]
+    },
+    "FlowFormViewRequest": {
+      "type": "object",
+      "title": "FlowFormViewRequest"
+    },
+    "FlowFormViewResponse": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "type": "string"
+        },
+        "option": {
+          "type": "string"
+        }
+      },
+      "title": "FlowFormViewResponse",
+      "required": [
+        "rule",
+        "option"
       ]
     },
     "FlowcateResponse": {

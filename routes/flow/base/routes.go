@@ -12,5 +12,7 @@ func RegisterFlowBaseRoute(e *gin.Engine) {
 	g := e.Group("/base")
 	g.Use(middleware.JwtMiddleware)
 	g.GET("/flowcate", base.FlowcateHandle)
+	g.GET("/flowform", base.FlowformHandle)
+	g.GET("/flowformveiw/:key/:version", base.FlowformveiwHandle)
 
 }

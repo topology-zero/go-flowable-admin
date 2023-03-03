@@ -9,6 +9,27 @@ type (
         Id int `json:"id"` // ID
         Name string `json:"name"` // 分类名
     }
+
+    FlowFormResponse {
+        List []BaseFlowFormList `json:"list"`
+    }
+
+    BaseFlowFormList {
+        Key string `json:"key"`
+        Name string  `json:"name"`
+        Version int `json:"version"`
+        Descrption string `json:"descrption"`
+    }
+
+    FlowFormViewRequest {
+        Key string `path:"key"`
+        Version int `path:"version"`
+    }
+
+    FlowFormViewResponse {
+        Rule string `json:"rule"`
+        Option string `json:"option"`
+    }
 )
 
 @server(
@@ -22,4 +43,13 @@ service go-flow-admin {
     @doc "流程分类列表"
     @handler flowcate
     get /flowcate returns (FlowcateResponse)
+
+    @doc "流程表单列表"
+    @handler flowform
+    get /flowform returns (FlowFormResponse)
+
+
+    @doc "流程表单预览"
+    @handler flowformveiw
+    get /flowformveiw/:key/:version (FlowFormViewRequest) returns (FlowFormViewResponse)
 }

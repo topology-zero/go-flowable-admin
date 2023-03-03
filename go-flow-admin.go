@@ -37,7 +37,7 @@ func main() {
 
 	config.Setup(configFile)
 	logger.Setup()
-	flowablesdk.Setup(flowablesdk.Config{Url: "http://127.0.0.1:8080/", RequestDebug: true, ResponseDebug: true})
+	flowablesdk.Setup(flowablesdk.Config{Url: "http://127.0.0.1:8080/", RequestDebug: false, ResponseDebug: true})
 	model.Setup()
 	query.SetDefault(model.DB())
 	routes.Setup(e)

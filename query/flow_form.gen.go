@@ -33,6 +33,7 @@ func newFlowFormModel(db *gorm.DB, opts ...gen.DOOption) flowFormModel {
 	_flowFormModel.Rule = field.NewString(tableName, "rule")
 	_flowFormModel.Option = field.NewString(tableName, "option")
 	_flowFormModel.CreateTime = field.NewTime(tableName, "create_time")
+	_flowFormModel.DeleteTime = field.NewField(tableName, "delete_time")
 
 	_flowFormModel.fillFieldMap()
 
@@ -49,6 +50,7 @@ type flowFormModel struct {
 	Rule       field.String // 表单回显使用
 	Option     field.String // 表单回显使用
 	CreateTime field.Time
+	DeleteTime field.Field
 
 	fieldMap map[string]field.Expr
 }
@@ -71,6 +73,7 @@ func (f *flowFormModel) updateTableName(table string) *flowFormModel {
 	f.Rule = field.NewString(table, "rule")
 	f.Option = field.NewString(table, "option")
 	f.CreateTime = field.NewTime(table, "create_time")
+	f.DeleteTime = field.NewField(table, "delete_time")
 
 	f.fillFieldMap()
 
@@ -87,13 +90,14 @@ func (f *flowFormModel) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (f *flowFormModel) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 6)
+	f.fieldMap = make(map[string]field.Expr, 7)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["key"] = f.Key
 	f.fieldMap["version"] = f.Version
 	f.fieldMap["rule"] = f.Rule
 	f.fieldMap["option"] = f.Option
 	f.fieldMap["create_time"] = f.CreateTime
+	f.fieldMap["delete_time"] = f.DeleteTime
 }
 
 func (f flowFormModel) clone(db *gorm.DB) flowFormModel {

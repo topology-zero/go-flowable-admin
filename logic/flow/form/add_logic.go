@@ -16,14 +16,16 @@ import (
 
 // Add 添加流程外置表单
 func Add(req *form.FlowFormAddRequest, ctx *svc.ServiceContext) error {
+	tx := query.Q.Begin()
 	formModel := query.FlowFormModel
 	flowForm := &model.FlowFormModel{
 		Rule:    req.Rule,
 		Option:  req.Option,
 		Version: 1,
 	}
-	err := formModel.Create(flowForm)
+	err := tx.FlowFormModel.Create(flowForm)
 	if err != nil {
+		tx.Rollback()
 		ctx.Log.Errorf("数据库异常：%+v", errors.WithStack(err))
 		return errors.New("系统错误")
 	}
@@ -47,16 +49,18 @@ func Add(req *form.FlowFormAddRequest, ctx *svc.ServiceContext) error {
 		},
 	})
 	if err != nil {
+		tx.Rollback()
 		ctx.Log.Errorf("%+v", errors.WithStack(err))
 		err = errors.New("添加流程外置表单错误")
 	}
-
-	_, err = formModel.Where(formModel.ID.Eq(flowForm.ID)).UpdateSimple(
+	_, err = tx.FlowFormModel.Where(formModel.ID.Eq(flowForm.ID)).UpdateSimple(
 		formModel.Key.Value(strconv.Itoa(flowForm.ID)),
 	)
 	if err != nil {
+		tx.Rollback()
 		ctx.Log.Errorf("数据库异常：%+v", errors.WithStack(err))
 		err = errors.New("系统错误")
 	}
+	tx.Commit()
 	return err
 }

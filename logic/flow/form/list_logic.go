@@ -16,6 +16,9 @@ func List(req *form.FlowFormListRequest, ctx *svc.ServiceContext) (resp form.Flo
 	param.Sort = "version"
 	param.Order = "desc"
 	param.Latest = true
+	if len(req.Name) > 0 {
+		param.Name = req.Name
+	}
 	list, count, err := form_definition.List(param)
 	if err != nil {
 		ctx.Log.Errorf("%+v", errors.WithStack(err))

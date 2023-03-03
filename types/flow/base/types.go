@@ -15,10 +15,10 @@ type FlowFormResponse struct {
 }
 
 type BaseFlowFormList struct {
-	Key        string `json:"key"`
-	Name       string `json:"name"`
-	Version    int    `json:"version"`
-	Descrption string `json:"descrption"`
+	Key         string `json:"key"`
+	Name        string `json:"name"`
+	Version     int    `json:"version"`
+	Description string `json:"description"`
 }
 
 type FlowFormViewRequest struct {

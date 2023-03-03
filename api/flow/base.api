@@ -18,7 +18,7 @@ type (
         Key string `json:"key"`
         Name string  `json:"name"`
         Version int `json:"version"`
-        Descrption string `json:"descrption"`
+        Description string `json:"description"`
     }
 
     FlowFormViewRequest {
@@ -47,7 +47,6 @@ service go-flow-admin {
     @doc "流程表单列表"
     @handler flowform
     get /flowform returns (FlowFormResponse)
-
 
     @doc "流程表单预览"
     @handler flowformveiw

@@ -6,21 +6,18 @@ package model
 
 import (
 	"time"
-
-	"gorm.io/gorm"
 )
 
 const TableNameFlowFormModel = "flow_form"
 
 // FlowFormModel mapped from table <flow_form>
 type FlowFormModel struct {
-	ID         int            `gorm:"column:id;primaryKey;autoIncrement:true"`
-	Name       string         `gorm:"column:name"`   // 表单用途
-	Rule       string         `gorm:"column:rule"`   // 表单回显使用
-	Option     string         `gorm:"column:option"` // 表单回显使用
-	CreateTime time.Time      `gorm:"column:create_time;default:CURRENT_TIMESTAMP"`
-	UpdateTime time.Time      `gorm:"column:update_time;default:CURRENT_TIMESTAMP"`
-	DeleteTime gorm.DeletedAt `gorm:"column:delete_time"`
+	ID         int       `gorm:"column:id;primaryKey;autoIncrement:true"`
+	Key        string    `gorm:"column:key"`               // key
+	Version    int       `gorm:"column:version;default:1"` // 版本
+	Rule       string    `gorm:"column:rule"`              // 表单回显使用
+	Option     string    `gorm:"column:option"`            // 表单回显使用
+	CreateTime time.Time `gorm:"column:create_time;default:CURRENT_TIMESTAMP"`
 }
 
 // TableName FlowFormModel's table name

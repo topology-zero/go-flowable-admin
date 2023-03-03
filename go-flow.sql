@@ -144,13 +144,11 @@ CREATE TABLE `flow_cate`  (
 DROP TABLE IF EXISTS `flow_form`;
 CREATE TABLE `flow_form`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '表单用途',
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'key',
+  `version` int(11) NULL DEFAULT 1 COMMENT '版本',
   `rule` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '表单回显使用',
   `option` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '表单回显使用',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `delete_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '流程外置表单' ROW_FORMAT = Dynamic;
-
 SET FOREIGN_KEY_CHECKS = 1;

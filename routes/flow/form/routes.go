@@ -12,9 +12,9 @@ func RegisterFlowFormRoute(e *gin.Engine) {
 	g := e.Group("")
 	g.Use(middleware.JwtMiddleware, middleware.AuthMiddleware)
 	g.GET("/flow/form", form.ListHandle)
-	g.GET("/flow/form/:id", form.DetailHandle)
+	g.GET("/flow/form/:key/:version", form.DetailHandle)
 	g.POST("/flow/form", form.AddHandle)
-	g.PUT("/flow/form/:id", form.EditHandle)
+	g.PUT("/flow/form/:key/:version", form.EditHandle)
 	g.DELETE("/flow/form/:id", form.DelHandle)
 
 }

@@ -15,36 +15,41 @@ type (
     }
 
     FlowFormList {
-        Id int  `json:"id"`
-        Name string `json:"name"` // 表单用途
+        DeploymentId string `json:"deploymentId"`
+        Key string `json:"key"`
+        Version int `json:"version"`
+        Name string `json:"name"`               // 表单用途
+        Description string `json:"description"` // 表单描述
     }
 
     FlowFormDetailRequest {
-        Id int `path:"id"`
+        Key string `path:"key"`
+        Version int `path:"version"`
     }
 
     FlowFormDetailResponse {
-        Id int `json:"id"`
-        Name string `json:"name"`     // 表单用途
         Rule string `json:"rule"`     // 表单回显使用
         Option string `json:"option"` // 表单回显使用
     }
 
     FlowFormAddRequest {
         Name string `json:"name" binding:"required"`     // 表单用途
+        Desc string `json:"desc" binding:"required"`     // 表单描述
         Rule string `json:"rule" binding:"required"`     // 表单回显使用
         Option string `json:"option" binding:"required"` // 表单回显使用
     }
 
     FlowFormEditRequest {
-        Id int `path:"id"`
+        Key string `path:"key"`
+        Version int `path:"version"`
         Name string `json:"name" binding:"required"`     // 表单用途
+        Desc string `json:"desc" binding:"required"`     // 表单描述
         Rule string `json:"rule" binding:"required"`     // 表单回显使用
         Option string `json:"option" binding:"required"` // 表单回显使用
     }
 
     FlowFormDeleteRequest {
-        Id int `path:"id"`
+        id string `path:"id"`
     }
 )
 
@@ -63,7 +68,7 @@ service go-flow-admin {
 
     @doc "流程外置表单详情"
     @handler detail
-    get /flow/form/:id (FlowFormDetailRequest) returns (FlowFormDetailResponse)
+    get /flow/form/:key/:version (FlowFormDetailRequest) returns (FlowFormDetailResponse)
 
     @doc "添加流程外置表单"
     @handler add
@@ -71,7 +76,7 @@ service go-flow-admin {
 
     @doc "编辑流程外置表单"
     @handler edit
-    put /flow/form/:id (FlowFormEditRequest)
+    put /flow/form/:key/:version (FlowFormEditRequest)
 
     @doc "删除流程外置表单"
     @handler del

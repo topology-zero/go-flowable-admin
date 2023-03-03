@@ -10,8 +10,7 @@ import (
 // Detail 流程外置表单详情
 func Detail(req *form.FlowFormDetailRequest, ctx *svc.ServiceContext) (resp form.FlowFormDetailResponse, err error) {
 	formModel := query.FlowFormModel
-	first, _ := formModel.Where(formModel.ID.Eq(req.Id)).First()
+	first, _ := formModel.Where(formModel.Key.Eq(req.Key), formModel.Version.Eq(req.Version)).First()
 	copier.Copy(&resp, &first)
-	resp.Id = first.ID
 	return
 }

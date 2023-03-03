@@ -15,34 +15,39 @@ type FlowFormListResponse struct {
 }
 
 type FlowFormList struct {
-	Id   int    `json:"id"`
-	Name string `json:"name"` // 表单用途
+	DeploymentId string `json:"deploymentId"`
+	Key          string `json:"key"`
+	Version      int    `json:"version"`
+	Name         string `json:"name"`        // 表单用途
+	Description  string `json:"description"` // 表单描述
 }
 
 type FlowFormDetailRequest struct {
-	Id int `uri:"id"`
+	Key     string `uri:"key"`
+	Version int    `uri:"version"`
 }
 
 type FlowFormDetailResponse struct {
-	Id     int    `json:"id"`
-	Name   string `json:"name"`   // 表单用途
 	Rule   string `json:"rule"`   // 表单回显使用
 	Option string `json:"option"` // 表单回显使用
 }
 
 type FlowFormAddRequest struct {
 	Name   string `json:"name" binding:"required" label:"表单用途"`     // 表单用途
+	Desc   string `json:"desc" binding:"required" label:"表单描述"`     // 表单描述
 	Rule   string `json:"rule" binding:"required" label:"表单回显使用"`   // 表单回显使用
 	Option string `json:"option" binding:"required" label:"表单回显使用"` // 表单回显使用
 }
 
 type FlowFormEditRequest struct {
-	Id     int    `uri:"id"`
-	Name   string `json:"name" binding:"required" label:"表单用途"`     // 表单用途
-	Rule   string `json:"rule" binding:"required" label:"表单回显使用"`   // 表单回显使用
-	Option string `json:"option" binding:"required" label:"表单回显使用"` // 表单回显使用
+	Key     string `uri:"key"`
+	Version int    `uri:"version"`
+	Name    string `json:"name" binding:"required" label:"表单用途"`     // 表单用途
+	Desc    string `json:"desc" binding:"required" label:"表单描述"`     // 表单描述
+	Rule    string `json:"rule" binding:"required" label:"表单回显使用"`   // 表单回显使用
+	Option  string `json:"option" binding:"required" label:"表单回显使用"` // 表单回显使用
 }
 
 type FlowFormDeleteRequest struct {
-	Id int `uri:"id"`
+	Id string `uri:"id"`
 }

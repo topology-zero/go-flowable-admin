@@ -15,11 +15,11 @@ type FlowFormListResponse struct {
 }
 
 type FlowFormList struct {
-	DeploymentId string `json:"deploymentId"`
-	Key          string `json:"key"`
-	Version      int    `json:"version"`
-	Name         string `json:"name"`        // 表单用途
-	Description  string `json:"description"` // 表单描述
+	Id          string `json:"id"`
+	Key         string `json:"key"`
+	Version     int    `json:"version"`
+	Name        string `json:"name"`        // 表单用途
+	Description string `json:"description"` // 表单描述
 }
 
 type FlowFormDetailRequest struct {

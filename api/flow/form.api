@@ -15,7 +15,7 @@ type (
     }
 
     FlowFormList {
-        DeploymentId string `json:"deploymentId"`
+        Id string `json:"id"`
         Key string `json:"key"`
         Version int `json:"version"`
         Name string `json:"name"`               // 表单用途

@@ -23,8 +23,7 @@ type FlowFormList struct {
 }
 
 type FlowFormDetailRequest struct {
-	Key     string `uri:"key"`
-	Version int    `uri:"version"`
+	Id string `uri:"id"`
 }
 
 type FlowFormDetailResponse struct {
@@ -33,19 +32,11 @@ type FlowFormDetailResponse struct {
 }
 
 type FlowFormAddRequest struct {
+	Key    string `json:"key" binding:"required"`
 	Name   string `json:"name" binding:"required" label:"表单用途"`     // 表单用途
 	Desc   string `json:"desc" binding:"required" label:"表单描述"`     // 表单描述
 	Rule   string `json:"rule" binding:"required" label:"表单回显使用"`   // 表单回显使用
 	Option string `json:"option" binding:"required" label:"表单回显使用"` // 表单回显使用
-}
-
-type FlowFormEditRequest struct {
-	Key     string `uri:"key"`
-	Version int    `uri:"version"`
-	Name    string `json:"name" binding:"required" label:"表单用途"`     // 表单用途
-	Desc    string `json:"desc" binding:"required" label:"表单描述"`     // 表单描述
-	Rule    string `json:"rule" binding:"required" label:"表单回显使用"`   // 表单回显使用
-	Option  string `json:"option" binding:"required" label:"表单回显使用"` // 表单回显使用
 }
 
 type FlowFormDeleteRequest struct {

@@ -3,7 +3,7 @@ module go-flow-admin
 go 1.18
 
 require (
-	github.com/MasterJoyHunan/flowablesdk v1.3.3
+	github.com/MasterJoyHunan/flowablesdk v1.3.5
 	github.com/casbin/casbin/v2 v2.55.1
 	github.com/casbin/gorm-adapter/v3 v3.14.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible

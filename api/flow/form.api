@@ -23,8 +23,7 @@ type (
     }
 
     FlowFormDetailRequest {
-        Key string `path:"key"`
-        Version int `path:"version"`
+        Id string `path:"id"`
     }
 
     FlowFormDetailResponse {
@@ -33,15 +32,7 @@ type (
     }
 
     FlowFormAddRequest {
-        Name string `json:"name" binding:"required"`     // 表单用途
-        Desc string `json:"desc" binding:"required"`     // 表单描述
-        Rule string `json:"rule" binding:"required"`     // 表单回显使用
-        Option string `json:"option" binding:"required"` // 表单回显使用
-    }
-
-    FlowFormEditRequest {
-        Key string `path:"key"`
-        Version int `path:"version"`
+        Key string `json:"key" binding:"required"`
         Name string `json:"name" binding:"required"`     // 表单用途
         Desc string `json:"desc" binding:"required"`     // 表单描述
         Rule string `json:"rule" binding:"required"`     // 表单回显使用
@@ -68,15 +59,11 @@ service go-flow-admin {
 
     @doc "流程外置表单详情"
     @handler detail
-    get /flow/form/:key/:version (FlowFormDetailRequest) returns (FlowFormDetailResponse)
+    get /flow/form/:id (FlowFormDetailRequest) returns (FlowFormDetailResponse)
 
     @doc "添加流程外置表单"
     @handler add
     post /flow/form (FlowFormAddRequest)
-
-    @doc "编辑流程外置表单"
-    @handler edit
-    put /flow/form/:key/:version (FlowFormEditRequest)
 
     @doc "删除流程外置表单"
     @handler del

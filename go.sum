@@ -67,14 +67,8 @@ github.com/Joker/jade v1.0.1-0.20190614124447-d475f43051e7/go.mod h1:6E6s8o2AE4K
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible h1:1G1pk05UrOh0NlF1oeaaix1x8XzrfjIDK47TY0Zehcw=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
-github.com/MasterJoyHunan/flowablesdk v1.3.0 h1:r1BIgcpm2SRzH0VFeBT1HQi8f+PJ9n2S/El3Cc85+mU=
-github.com/MasterJoyHunan/flowablesdk v1.3.0/go.mod h1:YwqvuD3M5g/7cDLUVxsEQXo3Q4FMOEdxDcxzCu0k888=
-github.com/MasterJoyHunan/flowablesdk v1.3.1 h1:yfl5o9WoWSqs0AXDBVHHSVs/Nz28Bfzv8qJDvoyvgms=
-github.com/MasterJoyHunan/flowablesdk v1.3.1/go.mod h1:YwqvuD3M5g/7cDLUVxsEQXo3Q4FMOEdxDcxzCu0k888=
-github.com/MasterJoyHunan/flowablesdk v1.3.2 h1:v13Z8HUI8RYFtd+DfigrTUnluXC0Pdf1rLHWrg6qJpE=
-github.com/MasterJoyHunan/flowablesdk v1.3.2/go.mod h1:YwqvuD3M5g/7cDLUVxsEQXo3Q4FMOEdxDcxzCu0k888=
-github.com/MasterJoyHunan/flowablesdk v1.3.3 h1:yom+TEKXn6bjj4p++OFuLSapYatph70ucfyVCKNBJL4=
-github.com/MasterJoyHunan/flowablesdk v1.3.3/go.mod h1:YwqvuD3M5g/7cDLUVxsEQXo3Q4FMOEdxDcxzCu0k888=
+github.com/MasterJoyHunan/flowablesdk v1.3.5 h1:Od0hhjf2BHP2MTF/XdaKrKgyTDG8saUwRmOLQocImEw=
+github.com/MasterJoyHunan/flowablesdk v1.3.5/go.mod h1:YwqvuD3M5g/7cDLUVxsEQXo3Q4FMOEdxDcxzCu0k888=
 github.com/Masterminds/semver/v3 v3.1.1 h1:hLg3sBzpNErnxhQtUy/mmLR2I9foDujNK030IGemrRc=
 github.com/Masterminds/semver/v3 v3.1.1/go.mod h1:VPu/7SZ7ePZ3QOrcuXROw5FAcLl4a0cBrbBpGY/8hQs=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=

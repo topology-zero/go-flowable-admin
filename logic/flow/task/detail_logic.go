@@ -190,9 +190,14 @@ func (p *processDetail) getTaskEvent(id string) error {
 
 // 获取任务表单
 func (p *processDetail) getForm(id string) error {
+	// 内置表单用这个
 	data, err := form.GetFrom(form.GetFromRequest{
 		TaskId: id,
 	})
+
+	// 外置表单用这个
+	//getForm, _ := task_form.GetForm(id)
+	//p.ctx.Log.Error(string(getForm))
 
 	if err != nil {
 		p.ctx.Log.Errorf("%+v", errors.WithStack(err))

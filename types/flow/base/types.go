@@ -23,7 +23,7 @@ type BaseFlowFormList struct {
 }
 
 type FlowFormViewRequest struct {
-	Id string `uri:"id"`
+	Key string `uri:"key"`
 }
 
 type FlowFormViewResponse struct {

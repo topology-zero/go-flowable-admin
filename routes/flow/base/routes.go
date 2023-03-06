@@ -13,6 +13,6 @@ func RegisterFlowBaseRoute(e *gin.Engine) {
 	g.Use(middleware.JwtMiddleware)
 	g.GET("/flowcate", base.FlowcateHandle)
 	g.GET("/flowform", base.FlowformHandle)
-	g.GET("/flowformveiw/:id", base.FlowformveiwHandle)
+	g.GET("/flowformveiw/:key", base.FlowformveiwHandle)
 
 }

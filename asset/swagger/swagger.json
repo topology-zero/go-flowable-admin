@@ -28,9 +28,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "后台权限相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -52,9 +56,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台权限相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -84,9 +92,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台权限相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "put": {
@@ -114,9 +126,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台权限相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -132,9 +148,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -150,9 +170,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -176,9 +200,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -194,9 +222,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -212,13 +244,17 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
-    "/base/flowformveiw/{id}": {
+    "/base/flowformveiw/{key}": {
       "get": {
         "summary": "流程表单预览",
         "operationId": "flowformveiw",
@@ -232,15 +268,19 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -256,9 +296,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -274,9 +318,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "基础接口相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -292,7 +340,6 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "登录相关"
         ]
@@ -324,9 +371,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -360,9 +411,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -398,9 +453,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -434,9 +493,13 @@
             "format": "int32"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程分类相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -458,9 +521,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程分类相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -490,9 +557,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程分类相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "put": {
@@ -520,9 +591,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程分类相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -552,9 +627,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -590,9 +669,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -633,9 +716,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程外置表单相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -657,9 +744,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程外置表单相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -683,9 +774,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程外置表单相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "delete": {
@@ -713,9 +808,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程外置表单相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -770,9 +869,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程实例相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -796,9 +899,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程实例相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -839,9 +946,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程定义相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -865,9 +976,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程定义相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -897,9 +1012,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程定义相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -923,9 +1042,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程定义相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "delete": {
@@ -953,9 +1076,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "流程定义相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -979,9 +1106,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1015,9 +1146,13 @@
             "format": "int32"
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1051,9 +1186,13 @@
             "format": "int32"
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1083,9 +1222,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1115,9 +1258,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1147,9 +1294,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1165,9 +1316,13 @@
             }
           }
         },
-        "requestBody": {},
         "tags": [
           "代码生成相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -1191,9 +1346,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "代码生成相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1219,7 +1378,6 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "登录相关"
         ]
@@ -1235,7 +1393,6 @@
             "schema": {}
           }
         },
-        "requestBody": {},
         "tags": [
           "登录相关"
         ]
@@ -1271,9 +1428,13 @@
             "format": "int32"
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台角色相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -1295,9 +1456,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台角色相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1321,9 +1486,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台角色相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "delete": {
@@ -1351,9 +1520,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台角色相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "put": {
@@ -1381,9 +1554,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台角色相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1417,9 +1594,13 @@
             "format": "int32"
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台用户相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "post": {
@@ -1441,9 +1622,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台用户相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     },
@@ -1467,9 +1652,13 @@
             "type": "string"
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台用户相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "delete": {
@@ -1497,9 +1686,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台用户相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       },
       "put": {
@@ -1527,9 +1720,13 @@
             }
           }
         ],
-        "requestBody": {},
         "tags": [
           "后台用户相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
         ]
       }
     }
@@ -1588,10 +1785,6 @@
     "AddAttachmentRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": " 任务ID"
-        },
         "name": {
           "type": "string",
           "description": " 文件名(必填)"
@@ -1607,7 +1800,6 @@
       },
       "title": "AddAttachmentRequest",
       "required": [
-        "id",
         "name",
         "description",
         "externalUrl"
@@ -1616,10 +1808,6 @@
     "AddCommentRequest": {
       "type": "object",
       "properties": {
-        "taskId": {
-          "type": "string",
-          "description": " 任务ID"
-        },
         "message": {
           "type": "string",
           "description": " 备注"
@@ -1627,7 +1815,6 @@
       },
       "title": "AddCommentRequest",
       "required": [
-        "taskId",
         "message"
       ]
     },
@@ -1853,24 +2040,11 @@
     },
     "AuthDeleteRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "AuthDeleteRequest",
-      "required": [
-        "id"
-      ]
+      "title": "AuthDeleteRequest"
     },
     "AuthEditRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "pid": {
           "type": "integer",
           "format": "int32"
@@ -1899,7 +2073,6 @@
       },
       "title": "AuthEditRequest",
       "required": [
-        "id",
         "pid",
         "min=0",
         "key",
@@ -2111,24 +2284,11 @@
     },
     "CompleteRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 任务ID"
-        }
-      },
-      "title": "CompleteRequest",
-      "required": [
-        "id"
-      ]
+      "title": "CompleteRequest"
     },
     "CompleteWithFormRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": " 任务ID"
-        },
         "properties": {
           "type": "array",
           "items": {
@@ -2138,53 +2298,20 @@
       },
       "title": "CompleteWithFormRequest",
       "required": [
-        "id",
         "properties"
       ]
     },
     "DelAttachmentRequest": {
       "type": "object",
-      "properties": {
-        "taskId": {
-          "type": "string",
-          "description": " 任务ID"
-        },
-        "fileId": {
-          "type": "string",
-          "description": " 文件ID"
-        }
-      },
-      "title": "DelAttachmentRequest",
-      "required": [
-        "taskId",
-        "fileId"
-      ]
+      "title": "DelAttachmentRequest"
     },
     "DelCommentRequest": {
       "type": "object",
-      "properties": {
-        "taskId": {
-          "type": "string",
-          "description": " 任务ID"
-        },
-        "commentId": {
-          "type": "string",
-          "description": " 备注ID"
-        }
-      },
-      "title": "DelCommentRequest",
-      "required": [
-        "taskId",
-        "commentId"
-      ]
+      "title": "DelCommentRequest"
     },
     "DelegateRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": " 任务ID"
-        },
         "toUser": {
           "type": "integer",
           "format": "int32",
@@ -2193,49 +2320,20 @@
       },
       "title": "DelegateRequest",
       "required": [
-        "id",
         "toUser"
       ]
     },
     "DeleteFlowCateRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32",
-          "description": " ID"
-        }
-      },
-      "title": "DeleteFlowCateRequest",
-      "required": [
-        "id"
-      ]
+      "title": "DeleteFlowCateRequest"
     },
     "DeleteProcessRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 业务流程ID"
-        }
-      },
-      "title": "DeleteProcessRequest",
-      "required": [
-        "id"
-      ]
+      "title": "DeleteProcessRequest"
     },
     "DetailProcessRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 流程ID"
-        }
-      },
-      "title": "DetailProcessRequest",
-      "required": [
-        "id"
-      ]
+      "title": "DetailProcessRequest"
     },
     "DetailProcessResponse": {
       "type": "object",
@@ -2262,35 +2360,11 @@
     },
     "DownloadAttachmentRequest": {
       "type": "object",
-      "properties": {
-        "taskId": {
-          "type": "string",
-          "description": " 任务ID"
-        },
-        "attachmentId": {
-          "type": "string",
-          "description": " 附件ID"
-        },
-        "fileName": {
-          "type": "string",
-          "description": " 附件名"
-        }
-      },
-      "title": "DownloadAttachmentRequest",
-      "required": [
-        "taskId",
-        "attachmentId",
-        "fileName"
-      ]
+      "title": "DownloadAttachmentRequest"
     },
     "EditFlowCateRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32",
-          "description": " ID"
-        },
         "name": {
           "type": "string",
           "description": " 分类名"
@@ -2298,7 +2372,6 @@
       },
       "title": "EditFlowCateRequest",
       "required": [
-        "id",
         "name"
       ]
     },
@@ -2461,27 +2534,11 @@
     },
     "FlowFormDeleteRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      },
-      "title": "FlowFormDeleteRequest",
-      "required": [
-        "id"
-      ]
+      "title": "FlowFormDeleteRequest"
     },
     "FlowFormDetailRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      },
-      "title": "FlowFormDetailRequest",
-      "required": [
-        "id"
-      ]
+      "title": "FlowFormDetailRequest"
     },
     "FlowFormDetailResponse": {
       "type": "object",
@@ -2603,15 +2660,7 @@
     },
     "FlowFormViewRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      },
-      "title": "FlowFormViewRequest",
-      "required": [
-        "id"
-      ]
+      "title": "FlowFormViewRequest"
     },
     "FlowFormViewResponse": {
       "type": "object",
@@ -2871,15 +2920,7 @@
     },
     "ProcessInstanceDetailRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      },
-      "title": "ProcessInstanceDetailRequest",
-      "required": [
-        "id"
-      ]
+      "title": "ProcessInstanceDetailRequest"
     },
     "ProcessInstanceDetailResponse": {
       "type": "object",
@@ -3051,29 +3092,11 @@
     },
     "RoleDeleteRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "RoleDeleteRequest",
-      "required": [
-        "id"
-      ]
+      "title": "RoleDeleteRequest"
     },
     "RoleDetailRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "RoleDetailRequest",
-      "required": [
-        "id"
-      ]
+      "title": "RoleDetailRequest"
     },
     "RoleDetailResponse": {
       "type": "object",
@@ -3105,10 +3128,6 @@
     "RoleEditRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "name": {
           "type": "string",
           "description": " 角色名"
@@ -3124,7 +3143,6 @@
       },
       "title": "RoleEditRequest",
       "required": [
-        "id",
         "name",
         "auth",
         "required"
@@ -3204,29 +3222,11 @@
     },
     "StartProcessRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 流程ID"
-        }
-      },
-      "title": "StartProcessRequest",
-      "required": [
-        "id"
-      ]
+      "title": "StartProcessRequest"
     },
     "TaskDetailRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 任务ID"
-        }
-      },
-      "title": "TaskDetailRequest",
-      "required": [
-        "id"
-      ]
+      "title": "TaskDetailRequest"
     },
     "TaskDetailResponse": {
       "type": "object",
@@ -3449,29 +3449,11 @@
     },
     "UserDeleteRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "UserDeleteRequest",
-      "required": [
-        "id"
-      ]
+      "title": "UserDeleteRequest"
     },
     "UserDetailRequest": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "UserDetailRequest",
-      "required": [
-        "id"
-      ]
+      "title": "UserDetailRequest"
     },
     "UserDetailResponse": {
       "type": "object",
@@ -3516,10 +3498,6 @@
     "UserEditRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "username": {
           "type": "string",
           "description": " 用户名"
@@ -3549,7 +3527,6 @@
       },
       "title": "UserEditRequest",
       "required": [
-        "id",
         "username",
         "realname",
         "phone",
@@ -3727,10 +3704,5 @@
       "name": "Authorization",
       "in": "header"
     }
-  },
-  "security": [
-    {
-      "apiKey": []
-    }
-  ]
+  }
 }

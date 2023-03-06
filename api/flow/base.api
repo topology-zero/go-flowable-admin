@@ -23,7 +23,7 @@ type (
     }
 
     FlowFormViewRequest {
-        Id string `path:"id"`
+        Key string `path:"key"`
     }
 
     FlowFormViewResponse {
@@ -50,5 +50,5 @@ service go-flow-admin {
 
     @doc "流程表单预览"
     @handler flowformveiw
-    get /flowformveiw/:id (FlowFormViewRequest) returns (FlowFormViewResponse)
+    get /flowformveiw/:key (FlowFormViewRequest) returns (FlowFormViewResponse)
 }

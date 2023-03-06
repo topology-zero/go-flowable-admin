@@ -1838,10 +1838,6 @@
           "type": "string",
           "description": " 文件名"
         },
-        "category": {
-          "type": "string",
-          "description": " 所属分类"
-        },
         "xml": {
           "type": "string",
           "description": " 流程定义"
@@ -1850,7 +1846,6 @@
       "title": "AddProcessRequest",
       "required": [
         "fileName",
-        "category",
         "xml"
       ]
     },
@@ -2375,34 +2370,6 @@
         "name"
       ]
     },
-    "Event": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " ID"
-        },
-        "author": {
-          "type": "string",
-          "description": " 操作人"
-        },
-        "name": {
-          "type": "string",
-          "description": " 操作类型"
-        },
-        "time": {
-          "type": "string",
-          "description": " 操作时间"
-        }
-      },
-      "title": "Event",
-      "required": [
-        "id",
-        "author",
-        "name",
-        "time"
-      ]
-    },
     "FlowCateData": {
       "type": "object",
       "properties": {
@@ -2692,34 +2659,6 @@
       "title": "FlowcateResponse",
       "required": [
         "list"
-      ]
-    },
-    "Form": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": " 表单ID"
-        },
-        "name": {
-          "type": "string",
-          "description": " 表单名"
-        },
-        "type": {
-          "type": "string",
-          "description": " 表单格式"
-        },
-        "value": {
-          "type": "object",
-          "description": " 表单值"
-        }
-      },
-      "title": "Form",
-      "required": [
-        "id",
-        "name",
-        "type",
-        "value"
       ]
     },
     "GenerateListResponse": {
@@ -3231,12 +3170,13 @@
     "TaskDetailResponse": {
       "type": "object",
       "properties": {
-        "form": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Form"
-          },
-          "description": " 填写的表单"
+        "formRule": {
+          "type": "string",
+          "description": " 表单使用"
+        },
+        "formOption": {
+          "type": "string",
+          "description": " 表单使用"
         },
         "history": {
           "type": "array",
@@ -3244,20 +3184,13 @@
             "$ref": "#/definitions/Action"
           },
           "description": " 历史流转"
-        },
-        "event": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Event"
-          },
-          "description": " 操作日志"
         }
       },
       "title": "TaskDetailResponse",
       "required": [
-        "form",
-        "history",
-        "event"
+        "formRule",
+        "formOption",
+        "history"
       ]
     },
     "TaskHistory": {
@@ -3297,13 +3230,6 @@
             "$ref": "#/definitions/Attachment"
           },
           "description": " 附件"
-        },
-        "form": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Form"
-          },
-          "description": " 填写的表单"
         }
       },
       "title": "TaskHistory",
@@ -3314,8 +3240,7 @@
         "handleTime",
         "useTime",
         "comment",
-        "attachment",
-        "form"
+        "attachment"
       ]
     },
     "TaskList": {

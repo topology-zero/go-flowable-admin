@@ -38,7 +38,7 @@ type (
         UseTime int `json:"useTime"`                // 共计操作时间
         Comment []Comment `json:"comment"`          // 备注
         Attachment []Attachment `json:"attachment"` // 附件
-        Form []Form `json:"form"`                   // 填写的表单
+//        Form []Form `json:"form"`                   // 填写的表单
     }
 
     ProcessInstanceDetailRequest {

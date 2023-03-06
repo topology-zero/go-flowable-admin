@@ -1,8 +1,8 @@
 package process
 
 import (
-	"github.com/MasterJoyHunan/flowablesdk/deployment"
 	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/deployment"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/process"
 )
@@ -11,7 +11,6 @@ import (
 func Add(req *process.AddProcessRequest, ctx *svc.ServiceContext) (resp process.AddProcessResponse, err error) {
 	dep, err := deployment.Create(deployment.CreateRequest{
 		FileName: req.FileName + ".bpmn20.xml",
-		Category: req.Category,
 		Xml:      req.Xml,
 	})
 	if err != nil {

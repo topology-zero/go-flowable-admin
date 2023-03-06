@@ -3,11 +3,11 @@ package instance
 import (
 	"strings"
 
-	"github.com/MasterJoyHunan/flowablesdk/history/history_activity_instance"
-	"github.com/MasterJoyHunan/flowablesdk/history/history_task_instance"
-	"github.com/MasterJoyHunan/flowablesdk/task/task_attachment"
-	"github.com/MasterJoyHunan/flowablesdk/task/task_comment"
 	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/history/history_activity_instance"
+	"github.com/topology-zero/flowablesdk/history/history_task_instance"
+	"github.com/topology-zero/flowablesdk/task/task_attachment"
+	"github.com/topology-zero/flowablesdk/task/task_comment"
 	"go-flow-admin/logic/common"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/process/instance"
@@ -66,14 +66,14 @@ func Detail(req *instance.ProcessInstanceDetailRequest, ctx *svc.ServiceContext)
 			if len(taskDetail) != 1 {
 				continue
 			}
-			for _, variable := range taskDetail[0].Variables {
-				act.Form = append(act.Form, instance.Form{
-					Id:    variable.Name,
-					Name:  variable.Name,
-					Type:  variable.Type,
-					Value: variable.Value,
-				})
-			}
+			//for _, variable := range taskDetail[0].Variables {
+			//	act.Form = append(act.Form, instance.Form{
+			//		Id:    variable.Name,
+			//		Name:  variable.Name,
+			//		Type:  variable.Type,
+			//		Value: variable.Value,
+			//	})
+			//}
 
 			// 获取批注
 			comments, err := task_comment.List(v.TaskId)

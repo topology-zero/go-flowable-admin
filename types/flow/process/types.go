@@ -36,7 +36,6 @@ type DetailProcessResponse struct {
 
 type AddProcessRequest struct {
 	FileName string `json:"fileName" binding:"required" label:"文件名"` // 文件名
-	Category string `json:"category" label:"所属分类"`                   // 所属分类
 	Xml      string `json:"xml" binding:"required" label:"流程定义"`     // 流程定义
 }
 

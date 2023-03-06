@@ -3,7 +3,6 @@ module go-flow-admin
 go 1.18
 
 require (
-	github.com/MasterJoyHunan/flowablesdk v1.3.5
 	github.com/casbin/casbin/v2 v2.55.1
 	github.com/casbin/gorm-adapter/v3 v3.14.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -20,6 +19,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/viper v1.10.0
+	github.com/topology-zero/flowablesdk v1.3.9
 	golang.org/x/crypto v0.0.0-20221005025214-4161e89ecf1b
 	gorm.io/driver/mysql v1.4.1
 	gorm.io/gen v0.3.21

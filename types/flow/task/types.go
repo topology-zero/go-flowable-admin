@@ -22,16 +22,9 @@ type TaskList struct {
 }
 
 type TaskDetailResponse struct {
-	Form    []Form   `json:"form"`    // 填写的表单
-	History []Action `json:"history"` // 历史流转
-	Event   []Event  `json:"event"`   // 操作日志
-}
-
-type Form struct {
-	Id    string      `json:"id"`    // 表单ID
-	Name  string      `json:"name"`  // 表单名
-	Type  string      `json:"type"`  // 表单格式
-	Value interface{} `json:"value"` // 表单值
+	FormRule   string   `json:"formRule"`   // 表单使用
+	FormOption string   `json:"formOption"` // 表单使用
+	History    []Action `json:"history"`    // 历史流转
 }
 
 type Action struct {
@@ -42,13 +35,6 @@ type Action struct {
 	UseTime    int          `json:"useTime"`    // 共计操作时间
 	Comment    []Comment    `json:"comment"`    // 备注
 	Attachment []Attachment `json:"attachment"` // 附件
-}
-
-type Event struct {
-	Id     string `json:"id"`     // ID
-	Author string `json:"author"` // 操作人
-	Name   string `json:"name"`   // 操作类型
-	Time   string `json:"time"`   // 操作时间
 }
 
 type Comment struct {

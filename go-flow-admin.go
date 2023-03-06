@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MasterJoyHunan/flowablesdk"
 	"github.com/sirupsen/logrus"
+	"github.com/topology-zero/flowablesdk"
 	"go-flow-admin/config"
 	"go-flow-admin/middleware"
 	"go-flow-admin/model"
@@ -37,7 +37,7 @@ func main() {
 
 	config.Setup(configFile)
 	logger.Setup()
-	flowablesdk.Setup(flowablesdk.Config{Url: "http://127.0.0.1:8080/", RequestDebug: false, ResponseDebug: true})
+	flowablesdk.Setup(flowablesdk.Config{Url: "http://127.0.0.1:8080/"})
 	model.Setup()
 	query.SetDefault(model.DB())
 	routes.Setup(e)

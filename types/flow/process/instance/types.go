@@ -38,18 +38,10 @@ type TaskHistory struct {
 	UseTime    int          `json:"useTime"`    // 共计操作时间
 	Comment    []Comment    `json:"comment"`    // 备注
 	Attachment []Attachment `json:"attachment"` // 附件
-	Form       []Form       `json:"form"`       // 填写的表单
 }
 
 type ProcessInstanceDetailRequest struct {
 	Id string `uri:"id"`
-}
-
-type Form struct {
-	Id    string      `json:"id"`    // 表单ID
-	Name  string      `json:"name"`  // 表单名
-	Type  string      `json:"type"`  // 表单格式
-	Value interface{} `json:"value"` // 表单值
 }
 
 type Comment struct {

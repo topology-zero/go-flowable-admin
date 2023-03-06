@@ -1,16 +1,15 @@
 package task
 
 import (
-	"fmt"
 	"strings"
 
-	"github.com/MasterJoyHunan/flowablesdk/comment"
-	"github.com/MasterJoyHunan/flowablesdk/form"
-	"github.com/MasterJoyHunan/flowablesdk/history/history_activity_instance"
-	"github.com/MasterJoyHunan/flowablesdk/task/task_attachment"
-	"github.com/MasterJoyHunan/flowablesdk/task/task_comment"
-	"github.com/MasterJoyHunan/flowablesdk/task/task_event"
 	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/comment"
+	"github.com/topology-zero/flowablesdk/history/history_activity_instance"
+	flowTask "github.com/topology-zero/flowablesdk/task"
+	"github.com/topology-zero/flowablesdk/task/task_attachment"
+	"github.com/topology-zero/flowablesdk/task/task_comment"
+	"github.com/topology-zero/flowablesdk/task/task_form"
 	"go-flow-admin/logic/common"
 	"go-flow-admin/model"
 	"go-flow-admin/svc"
@@ -22,7 +21,6 @@ type processDetail struct {
 	processId    string
 	processDefId string
 	adminUsers   map[string]*model.AdminUserModel
-	actionTrans  map[string]string
 	detail       *task.TaskDetailResponse
 }
 
@@ -32,11 +30,6 @@ func newProcessDetail(id string, ctx *svc.ServiceContext) *processDetail {
 		processId:  id,
 		adminUsers: common.GetAdminUser(),
 		detail:     new(task.TaskDetailResponse),
-	}
-	p.actionTrans = map[string]string{
-		"AddComment":       "添加批注",
-		"AddAttachment":    "添加附件",
-		"DeleteAttachment": "删除附件",
 	}
 	return p
 }
@@ -88,8 +81,10 @@ func (p *processDetail) getProcessHistory() error {
 		}
 
 		if len(v.TaskId) > 0 {
+			taskDetail, _ := flowTask.Detail(v.TaskId)
+
 			// 获取表单
-			if v.EndTime == nil {
+			if v.EndTime == nil && len(taskDetail.FormKey) > 0 {
 				if err = p.getForm(v.TaskId); err != nil {
 					return err
 				}
@@ -106,12 +101,6 @@ func (p *processDetail) getProcessHistory() error {
 			if err != nil {
 				return err
 			}
-
-			// 获取操作事件
-			//err = p.getTaskEvent(v.TaskId)
-			//if err != nil {
-			//	return err
-			//}
 		}
 
 		data = append(data, act)
@@ -151,11 +140,6 @@ func (p *processDetail) getTaskAttachment(id string) (data []task.Attachment, er
 		return
 	}
 	for _, attachment := range attachments {
-		url := attachment.ExternalUrl
-		if len(url) == 0 {
-			url = fmt.Sprintf("/flow/attachment/%s/%s/%s", id, attachment.Id, attachment.Name)
-		}
-
 		data = append(data, task.Attachment{
 			Id:          attachment.Id,
 			TaskId:      id,
@@ -169,48 +153,25 @@ func (p *processDetail) getTaskAttachment(id string) (data []task.Attachment, er
 	return
 }
 
-// 获取任务的操作日志
-func (p *processDetail) getTaskEvent(id string) error {
-	events, err := task_event.List(id)
-	if err != nil {
-		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
-		return errors.New("获取流程操作日志错误")
-	}
-	for _, e := range events {
-		p.detail.Event = append(p.detail.Event, task.Event{
-			Id:     e.Id,
-			Author: p.adminUsers[e.UserId].Realname,
-			Name:   p.actionTrans[e.Action],
-			Time:   e.Time.Format("2006-01-02 15:04:05"),
-		})
-	}
-	//p.detail.Event = data
-	return nil
-}
-
 // 获取任务表单
 func (p *processDetail) getForm(id string) error {
 	// 内置表单用这个
-	data, err := form.GetFrom(form.GetFromRequest{
-		TaskId: id,
-	})
+	//data, err := form.GetFrom(form.GetFromRequest{
+	//	TaskId: id,
+	//})
 
 	// 外置表单用这个
-	//getForm, _ := task_form.GetForm(id)
-	//p.ctx.Log.Error(string(getForm))
+	getForm, err := task_form.GetForm(id)
+	p.ctx.Log.Errorf("%+v", getForm)
 
 	if err != nil {
 		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
 		return errors.New("获取任务表单错误")
 	}
 
-	for _, property := range data.FormProperties {
-		p.detail.Form = append(p.detail.Form, task.Form{
-			Id:    property.Id,
-			Name:  property.Name,
-			Type:  property.Type,
-			Value: property.Value,
-		})
+	if len(getForm.Fields) != 0 {
+		p.detail.FormRule = getForm.Fields[0].Value.(string)
+		p.detail.FormOption = getForm.Fields[1].Value.(string)
 	}
 	return nil
 }

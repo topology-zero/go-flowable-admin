@@ -36,7 +36,6 @@ type (
 
     AddProcessRequest {
         FileName string `json:"fileName" binding:"required"` // 文件名
-        Category string `json:"category"`                    // 所属分类
         Xml string `json:"xml" binding:"required"`           // 流程定义
     }
 

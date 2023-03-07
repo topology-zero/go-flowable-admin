@@ -22,19 +22,21 @@ type (
     }
 
     TaskDetailResponse {
-        FormRule string `json:"formRule"`     // 表单使用
-        FormOption string `json:"formOption"` // 表单使用
-        History []Action `json:"history"`     // 历史流转
+        History []Action `json:"history"` // 历史流转
     }
 
     Action {
-        ActionName string `json:"actionName"`       // 执行步骤
-        HandelUser string `json:"handelUser"`       // 操作人
-        CreateTime string `json:"createTime"`       // 开始时间
-        HandleTime string `json:"handleTime"`       // 操作时间
-        UseTime int `json:"useTime"`                // 共计操作时间
-        Comment []Comment `json:"comment"`          // 备注
-        Attachment []Attachment `json:"attachment"` // 附件
+        TaskId string `json:"taskId"`                       // 任务ID
+        ActionName string `json:"actionName"`               // 执行步骤
+        HandelUser string `json:"handelUser"`               // 操作人
+        CreateTime string `json:"createTime"`               // 开始时间
+        HandleTime string `json:"handleTime"`               // 操作时间
+        UseTime int `json:"useTime"`                        // 共计操作时间
+        Comment []Comment `json:"comment"`                  // 备注
+        Attachment []Attachment `json:"attachment"`         // 附件
+        FormRule string `json:"formRule"`                   // 表单使用
+        FormOption string `json:"formOption"`               // 表单使用
+        FormProperties []Properties `json:"formProperties"` // 表单填写的值
     }
 
     Comment {
@@ -53,14 +55,6 @@ type (
         Name string `json:"name"`               // 附件名
         Description string `json:"description"` // 附件描述
         Time string `json:"time"`               // 上传时间
-    }
-
-    Variable {
-        Name string `json:"name"`
-        Type string `json:"type"`
-        Value interface{} `json:"value"`
-        Scope string `json:"scope"`
-        ValueUrl string `json:"valueUrl"`
     }
 
     TaskDetailRequest {
@@ -112,6 +106,16 @@ type (
         TaskId string `path:"taskId"`             // 任务ID
         AttachmentId string `path:"attachmentId"` // 附件ID
         FileName string `path:"fileName"`         // 附件名
+    }
+
+    TaskAcceptRequest {
+        Id string `path:"id"`           // 任务ID
+        Message string `json:"message"` // 同意理由
+    }
+
+    TaskRejectRequest {
+        Id string `path:"id"`                              // 任务ID
+        Message string `json:"message" binding:"required"` // 驳回理由
     }
 )
 
@@ -167,4 +171,12 @@ service go-flow-admin {
     @doc "删除备注"
     @handler delComment
     delete /flow/comment/:taskId/:commentId (DelCommentRequest)
+
+    @doc "审批同意"
+    @handler accept
+    post /flow/task_accept/:id (TaskAcceptRequest)
+
+    @doc "审批驳回"
+    @handler reject
+    post /flow/task_reject/:id (TaskRejectRequest)
 }

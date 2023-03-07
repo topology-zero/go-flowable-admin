@@ -22,5 +22,7 @@ func RegisterFlowTaskRoute(e *gin.Engine) {
 	g.GET("/flow/attachment/:taskId/:attachmentId/:fileName", task.DownloadAttachmentHandle)
 	g.POST("/flow/comment/:taskId", task.AddCommentHandle)
 	g.DELETE("/flow/comment/:taskId/:commentId", task.DelCommentHandle)
+	g.POST("/flow/task_accept/:id", task.AcceptHandle)
+	g.POST("/flow/task_reject/:id", task.RejectHandle)
 
 }

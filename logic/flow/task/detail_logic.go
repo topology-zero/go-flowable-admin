@@ -4,67 +4,41 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/comment"
+	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 	"github.com/topology-zero/flowablesdk/history/history_activity_instance"
-	flowTask "github.com/topology-zero/flowablesdk/task"
+	"github.com/topology-zero/flowablesdk/history/history_task_instance"
 	"github.com/topology-zero/flowablesdk/task/task_attachment"
 	"github.com/topology-zero/flowablesdk/task/task_comment"
-	"github.com/topology-zero/flowablesdk/task/task_form"
 	"go-flow-admin/logic/common"
-	"go-flow-admin/model"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/task"
 )
 
-type processDetail struct {
-	ctx          *svc.ServiceContext
-	processId    string
-	processDefId string
-	adminUsers   map[string]*model.AdminUserModel
-	detail       *task.TaskDetailResponse
-}
-
-func newProcessDetail(id string, ctx *svc.ServiceContext) *processDetail {
-	p := &processDetail{
-		ctx:        ctx,
-		processId:  id,
-		adminUsers: common.GetAdminUser(),
-		detail:     new(task.TaskDetailResponse),
-	}
-	return p
-}
-
 // Detail 任务详情
-func Detail(req *task.TaskDetailRequest, ctx *svc.ServiceContext) (task.TaskDetailResponse, error) {
-	p := newProcessDetail(req.Id, ctx)
-	err := p.getProcessHistory()
-	return *p.detail, err
-}
-
-// getProcessHistory 获取流程实例历史流转
-func (p *processDetail) getProcessHistory() error {
-	var data []task.Action
-
-	req := history_activity_instance.ListRequest{}
-	req.Size = 1000
-	req.Sort = "startTime"
-	req.Order = "asc"
-	req.ProcessInstanceId = p.processId
-	activity, _, err := history_activity_instance.List(req)
+func Detail(req *task.TaskDetailRequest, ctx *svc.ServiceContext) (resp task.TaskDetailResponse, err error) {
+	param := history_activity_instance.ListRequest{}
+	param.Size = 1000
+	param.Sort = "startTime"
+	param.Order = "asc"
+	param.ProcessInstanceId = req.Id
+	activity, _, err := history_activity_instance.List(param)
 	if err != nil {
-		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
-		return errors.New("获取历史流程错误")
+		ctx.Log.Errorf("%+v", errors.WithStack(err))
+		err = errors.New("获取历史流程错误")
+		return
 	}
+
+	// 获取全部用户
+	adminUsers := common.GetAdminUser()
 
 	for _, v := range activity {
-		p.processDefId = v.ProcessDefinitionId
 		if v.ActivityType == "sequenceFlow" {
 			continue
 		}
 
 		userName := ""
 		if len(v.Assignee) > 0 {
-			userName = p.adminUsers[v.Assignee].Realname
+			userName = adminUsers[v.Assignee].Realname
 		}
 
 		endTime := ""
@@ -73,6 +47,7 @@ func (p *processDetail) getProcessHistory() error {
 		}
 
 		act := task.Action{
+			TaskId:     v.TaskId,
 			ActionName: v.ActivityName,
 			HandelUser: userName,
 			CreateTime: v.StartTime.Format("2006-01-02 15:04:05"),
@@ -81,97 +56,75 @@ func (p *processDetail) getProcessHistory() error {
 		}
 
 		if len(v.TaskId) > 0 {
-			taskDetail, _ := flowTask.Detail(v.TaskId)
-
-			// 获取表单
-			if v.EndTime == nil && len(taskDetail.FormKey) > 0 {
-				if err = p.getForm(v.TaskId); err != nil {
-					return err
-				}
+			// 获取填写的表单
+			var (
+				includeTaskLocalVariables = true
+				includeProcessVariables   = true
+			)
+			taskDetail, _, _ := history_task_instance.List(history_task_instance.ListRequest{
+				TaskId:                    v.TaskId,
+				IncludeTaskLocalVariables: &includeTaskLocalVariables,
+				IncludeProcessVariables:   &includeProcessVariables,
+			})
+			detail := taskDetail[0]
+			for _, variable := range detail.Variables {
+				act.FormProperties = append(act.FormProperties, task.Properties{
+					Id:    variable.Name,
+					Value: variable.Value,
+				})
 			}
 
-			// 获取备注
-			act.Comment, err = p.getTaskComment(v.TaskId)
+			// 获取表单
+			if len(detail.FormKey) > 0 {
+				formDef, _, _ := form_definition.List(form_definition.ListRequest{
+					Key:    detail.FormKey,
+					Latest: true,
+				})
+				model, err := form_definition.Model(formDef[0].Id)
+				if err != nil {
+					ctx.Log.Errorf("%+v", errors.WithStack(err))
+					return resp, errors.New("获取表单错误")
+				}
+				act.FormRule = model.Fields[0].Value.(string)
+				act.FormOption = model.Fields[1].Value.(string)
+			}
+
+			// 获取批注
+			comments, err := task_comment.List(v.TaskId)
 			if err != nil {
-				return err
+				ctx.Log.Errorf("%+v", errors.WithStack(err))
+				return resp, errors.New("获取批注错误")
+			}
+			for _, comment := range comments {
+				act.Comment = append(act.Comment, task.Comment{
+					Id:      comment.Id,
+					TaskId:  comment.TaskId,
+					Message: comment.Message,
+					Author:  adminUsers[comment.Author].Realname,
+					Time:    comment.Time.Format("2006-01-02 15:04:05"),
+				})
 			}
 
 			// 获取附件
-			act.Attachment, err = p.getTaskAttachment(v.TaskId)
+			attachments, err := task_attachment.List(v.TaskId)
 			if err != nil {
-				return err
+				ctx.Log.Errorf("%+v", errors.WithStack(err))
+				return resp, errors.New("获取附件错误")
+			}
+			for _, attachment := range attachments {
+				act.Attachment = append(act.Attachment, task.Attachment{
+					Id:          attachment.Id,
+					TaskId:      attachment.TaskUrl[strings.LastIndex(attachment.TaskUrl, "/")+1:],
+					Url:         attachment.Url,
+					Author:      adminUsers[attachment.UserId].Realname,
+					Name:        attachment.Name,
+					Description: attachment.Description,
+					Time:        attachment.Time.Format("2006-01-02 15:04:05"),
+				})
 			}
 		}
-
-		data = append(data, act)
-	}
-	p.detail.History = data
-	return nil
-}
-
-// 获取任务的备注
-func (p *processDetail) getTaskComment(id string) (data []task.Comment, err error) {
-	var comments []comment.Comment
-	comments, err = task_comment.List(id)
-	if err != nil {
-		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
-		err = errors.New("获取任务表单错误")
-		return
+		resp.History = append(resp.History, act)
 	}
 
-	for _, c := range comments {
-		data = append(data, task.Comment{
-			Id:      c.Id,
-			TaskId:  c.TaskId,
-			Author:  p.adminUsers[c.Author].Realname,
-			Message: c.Message,
-			Time:    c.Time.Format("2006-01-02 15:04:05"),
-		})
-	}
 	return
-}
-
-// 获取任务的附件
-func (p *processDetail) getTaskAttachment(id string) (data []task.Attachment, err error) {
-	attachments, err := task_attachment.List(id)
-	if err != nil {
-		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
-		err = errors.New("获取流程附件错误")
-		return
-	}
-	for _, attachment := range attachments {
-		data = append(data, task.Attachment{
-			Id:          attachment.Id,
-			TaskId:      id,
-			Url:         attachment.TaskUrl[strings.LastIndex(attachment.TaskUrl, "/")+1:],
-			Author:      p.adminUsers[attachment.UserId].Realname,
-			Name:        attachment.Name,
-			Description: attachment.Description,
-			Time:        attachment.Time.Format("2006-01-02 15:04:05"),
-		})
-	}
-	return
-}
-
-// 获取任务表单
-func (p *processDetail) getForm(id string) error {
-	// 内置表单用这个
-	//data, err := form.GetFrom(form.GetFromRequest{
-	//	TaskId: id,
-	//})
-
-	// 外置表单用这个
-	getForm, err := task_form.GetForm(id)
-	p.ctx.Log.Errorf("%+v", getForm)
-
-	if err != nil {
-		p.ctx.Log.Errorf("%+v", errors.WithStack(err))
-		return errors.New("获取任务表单错误")
-	}
-
-	if len(getForm.Fields) != 0 {
-		p.detail.FormRule = getForm.Fields[0].Value.(string)
-		p.detail.FormOption = getForm.Fields[1].Value.(string)
-	}
-	return nil
 }

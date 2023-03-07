@@ -1,7 +1,6 @@
 package task
 
 import (
-	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/topology-zero/flowablesdk/form"
 	"go-flow-admin/svc"
@@ -11,7 +10,15 @@ import (
 // CompleteWithForm 提交表单完成任务
 func CompleteWithForm(req *task.CompleteWithFormRequest, ctx *svc.ServiceContext) error {
 	var prop []form.Properties
-	copier.Copy(&prop, &req.Properties)
+	for _, v := range req.Properties {
+		prop = append(prop, form.Properties{
+			Id:    v.Id,
+			Value: v.Value,
+		}, form.Properties{
+			Id:    req.Id + "|" + v.Id,
+			Value: v.Value,
+		})
+	}
 
 	_, err := form.SubmitForm(form.SubmitFromRequest{
 		TaskId:     req.Id,

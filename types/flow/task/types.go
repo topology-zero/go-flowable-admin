@@ -22,19 +22,21 @@ type TaskList struct {
 }
 
 type TaskDetailResponse struct {
-	FormRule   string   `json:"formRule"`   // 表单使用
-	FormOption string   `json:"formOption"` // 表单使用
-	History    []Action `json:"history"`    // 历史流转
+	History []Action `json:"history"` // 历史流转
 }
 
 type Action struct {
-	ActionName string       `json:"actionName"` // 执行步骤
-	HandelUser string       `json:"handelUser"` // 操作人
-	CreateTime string       `json:"createTime"` // 开始时间
-	HandleTime string       `json:"handleTime"` // 操作时间
-	UseTime    int          `json:"useTime"`    // 共计操作时间
-	Comment    []Comment    `json:"comment"`    // 备注
-	Attachment []Attachment `json:"attachment"` // 附件
+	TaskId         string       `json:"taskId"`         // 任务ID
+	ActionName     string       `json:"actionName"`     // 执行步骤
+	HandelUser     string       `json:"handelUser"`     // 操作人
+	CreateTime     string       `json:"createTime"`     // 开始时间
+	HandleTime     string       `json:"handleTime"`     // 操作时间
+	UseTime        int          `json:"useTime"`        // 共计操作时间
+	Comment        []Comment    `json:"comment"`        // 备注
+	Attachment     []Attachment `json:"attachment"`     // 附件
+	FormRule       string       `json:"formRule"`       // 表单使用
+	FormOption     string       `json:"formOption"`     // 表单使用
+	FormProperties []Properties `json:"formProperties"` // 表单填写的值
 }
 
 type Comment struct {
@@ -104,4 +106,14 @@ type DownloadAttachmentRequest struct {
 	TaskId       string `uri:"taskId" label:"任务ID"`       // 任务ID
 	AttachmentId string `uri:"attachmentId" label:"附件ID"` // 附件ID
 	FileName     string `uri:"fileName" label:"附件名"`      // 附件名
+}
+
+type TaskAcceptRequest struct {
+	Id      string `uri:"id" label:"任务ID"`       // 任务ID
+	Message string `json:"message" label:"同意理由"` // 同意理由
+}
+
+type TaskRejectRequest struct {
+	Id      string `uri:"id" label:"任务ID"`                          // 任务ID
+	Message string `json:"message" binding:"required" label:"驳回理由"` // 驳回理由
 }

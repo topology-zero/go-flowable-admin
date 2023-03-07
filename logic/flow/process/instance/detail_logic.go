@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 	"github.com/topology-zero/flowablesdk/history/history_activity_instance"
 	"github.com/topology-zero/flowablesdk/history/history_task_instance"
 	"github.com/topology-zero/flowablesdk/task/task_attachment"
@@ -28,7 +29,9 @@ func Detail(req *instance.ProcessInstanceDetailRequest, ctx *svc.ServiceContext)
 		return
 	}
 
+	// 获取全部用户
 	adminUsers := common.GetAdminUser()
+
 	for _, v := range activity {
 		if v.ActivityType == "sequenceFlow" {
 			continue
@@ -44,7 +47,8 @@ func Detail(req *instance.ProcessInstanceDetailRequest, ctx *svc.ServiceContext)
 			endTime = v.EndTime.Format("2006-01-02 15:04:05")
 		}
 
-		act := instance.TaskHistory{
+		act := instance.Action{
+			TaskId:     v.TaskId,
 			ActionName: v.ActivityName,
 			HandelUser: userName,
 			CreateTime: v.StartTime.Format("2006-01-02 15:04:05"),
@@ -63,17 +67,28 @@ func Detail(req *instance.ProcessInstanceDetailRequest, ctx *svc.ServiceContext)
 				IncludeTaskLocalVariables: &includeTaskLocalVariables,
 				IncludeProcessVariables:   &includeProcessVariables,
 			})
-			if len(taskDetail) != 1 {
-				continue
+			detail := taskDetail[0]
+			for _, variable := range detail.Variables {
+				act.FormProperties = append(act.FormProperties, instance.Properties{
+					Id:    variable.Name,
+					Value: variable.Value,
+				})
 			}
-			//for _, variable := range taskDetail[0].Variables {
-			//	act.Form = append(act.Form, instance.Form{
-			//		Id:    variable.Name,
-			//		Name:  variable.Name,
-			//		Type:  variable.Type,
-			//		Value: variable.Value,
-			//	})
-			//}
+
+			// 获取表单
+			if len(detail.FormKey) > 0 {
+				formDef, _, _ := form_definition.List(form_definition.ListRequest{
+					Key:    detail.FormKey,
+					Latest: true,
+				})
+				model, err := form_definition.Model(formDef[0].Id)
+				if err != nil {
+					ctx.Log.Errorf("%+v", errors.WithStack(err))
+					return resp, errors.New("获取表单错误")
+				}
+				act.FormRule = model.Fields[0].Value.(string)
+				act.FormOption = model.Fields[1].Value.(string)
+			}
 
 			// 获取批注
 			comments, err := task_comment.List(v.TaskId)
@@ -108,13 +123,6 @@ func Detail(req *instance.ProcessInstanceDetailRequest, ctx *svc.ServiceContext)
 					Time:        attachment.Time.Format("2006-01-02 15:04:05"),
 				})
 			}
-
-			// 获取操作日志
-			//events, err := task_event.List(v.TaskId)
-			//if err != nil {
-			//	ctx.Log.Errorf("%+v", errors.WithStack(err))
-			//	err = errors.New("获取操作日志错误")
-			//}
 		}
 		resp.History = append(resp.History, act)
 	}

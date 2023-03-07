@@ -10,10 +10,10 @@ type (
     }
 
     ProcessInstanceResponse {
-        Page int `json:"page"`                        // 分页
-        PageSize int `json:"pageSize"`                // 每页条数
-        Total int `json:"total"`                      // 总条数
-        Data []ProcessInstanceList `json:"data"`      // 具体数据
+        Page int `json:"page"`                  // 分页
+        PageSize int `json:"pageSize"`          // 每页条数
+        Total int `json:"total"`                // 总条数
+        Data []ProcessInstanceList `json:"data"`// 具体数据
     }
 
     ProcessInstanceList {
@@ -27,18 +27,7 @@ type (
     }
 
     ProcessInstanceDetailResponse {
-        History []TaskHistory `json:"history"`  // 历史流转
-    }
-
-    TaskHistory {
-        ActionName string `json:"actionName"`       // 执行步骤
-        HandelUser string `json:"handelUser"`       // 操作人
-        CreateTime string `json:"createTime"`       // 开始时间
-        HandleTime string `json:"handleTime"`       // 操作时间
-        UseTime int `json:"useTime"`                // 共计操作时间
-        Comment []Comment `json:"comment"`          // 备注
-        Attachment []Attachment `json:"attachment"` // 附件
-//        Form []Form `json:"form"`                   // 填写的表单
+        History []Action `json:"history"` // 历史流转
     }
 
     ProcessInstanceDetailRequest {

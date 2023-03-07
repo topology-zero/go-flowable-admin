@@ -1116,6 +1116,42 @@
         ]
       }
     },
+    "/flow/task_accept/{id}": {
+      "post": {
+        "summary": "审批同意",
+        "operationId": "accept",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskAcceptRequest"
+            }
+          }
+        ],
+        "tags": [
+          "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
     "/flow/task_assignee": {
       "get": {
         "summary": "我的任务",
@@ -1291,6 +1327,42 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/DelegateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "任务相关"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/flow/task_reject/{id}": {
+      "post": {
+        "summary": "审批驳回",
+        "operationId": "reject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskRejectRequest"
             }
           }
         ],
@@ -1735,6 +1807,10 @@
     "Action": {
       "type": "object",
       "properties": {
+        "taskId": {
+          "type": "string",
+          "description": " 任务ID"
+        },
         "actionName": {
           "type": "string",
           "description": " 执行步骤"
@@ -1769,17 +1845,36 @@
             "$ref": "#/definitions/Attachment"
           },
           "description": " 附件"
+        },
+        "formRule": {
+          "type": "string",
+          "description": " 表单使用"
+        },
+        "formOption": {
+          "type": "string",
+          "description": " 表单使用"
+        },
+        "formProperties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Properties"
+          },
+          "description": " 表单填写的值"
         }
       },
       "title": "Action",
       "required": [
+        "taskId",
         "actionName",
         "handelUser",
         "createTime",
         "handleTime",
         "useTime",
         "comment",
-        "attachment"
+        "attachment",
+        "formRule",
+        "formOption",
+        "formProperties"
       ]
     },
     "AddAttachmentRequest": {
@@ -2867,7 +2962,7 @@
         "history": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TaskHistory"
+            "$ref": "#/definitions/Action"
           },
           "description": " 历史流转"
         }
@@ -3163,6 +3258,19 @@
       "type": "object",
       "title": "StartProcessRequest"
     },
+    "TaskAcceptRequest": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": " 同意理由"
+        }
+      },
+      "title": "TaskAcceptRequest",
+      "required": [
+        "message"
+      ]
+    },
     "TaskDetailRequest": {
       "type": "object",
       "title": "TaskDetailRequest"
@@ -3170,14 +3278,6 @@
     "TaskDetailResponse": {
       "type": "object",
       "properties": {
-        "formRule": {
-          "type": "string",
-          "description": " 表单使用"
-        },
-        "formOption": {
-          "type": "string",
-          "description": " 表单使用"
-        },
         "history": {
           "type": "array",
           "items": {
@@ -3188,59 +3288,7 @@
       },
       "title": "TaskDetailResponse",
       "required": [
-        "formRule",
-        "formOption",
         "history"
-      ]
-    },
-    "TaskHistory": {
-      "type": "object",
-      "properties": {
-        "actionName": {
-          "type": "string",
-          "description": " 执行步骤"
-        },
-        "handelUser": {
-          "type": "string",
-          "description": " 操作人"
-        },
-        "createTime": {
-          "type": "string",
-          "description": " 开始时间"
-        },
-        "handleTime": {
-          "type": "string",
-          "description": " 操作时间"
-        },
-        "useTime": {
-          "type": "integer",
-          "format": "int32",
-          "description": " 共计操作时间"
-        },
-        "comment": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Comment"
-          },
-          "description": " 备注"
-        },
-        "attachment": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Attachment"
-          },
-          "description": " 附件"
-        }
-      },
-      "title": "TaskHistory",
-      "required": [
-        "actionName",
-        "handelUser",
-        "createTime",
-        "handleTime",
-        "useTime",
-        "comment",
-        "attachment"
       ]
     },
     "TaskList": {
@@ -3328,6 +3376,19 @@
         "pageSize",
         "total",
         "data"
+      ]
+    },
+    "TaskRejectRequest": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": " 驳回理由"
+        }
+      },
+      "title": "TaskRejectRequest",
+      "required": [
+        "message"
       ]
     },
     "UserAddRequest": {
@@ -3591,34 +3652,6 @@
         "pageSize",
         "total",
         "data"
-      ]
-    },
-    "Variable": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "object"
-        },
-        "scope": {
-          "type": "string"
-        },
-        "valueUrl": {
-          "type": "string"
-        }
-      },
-      "title": "Variable",
-      "required": [
-        "name",
-        "type",
-        "value",
-        "scope",
-        "valueUrl"
       ]
     }
   },

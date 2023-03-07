@@ -27,21 +27,25 @@ type ProcessInstanceList struct {
 }
 
 type ProcessInstanceDetailResponse struct {
-	History []TaskHistory `json:"history"` // 历史流转
-}
-
-type TaskHistory struct {
-	ActionName string       `json:"actionName"` // 执行步骤
-	HandelUser string       `json:"handelUser"` // 操作人
-	CreateTime string       `json:"createTime"` // 开始时间
-	HandleTime string       `json:"handleTime"` // 操作时间
-	UseTime    int          `json:"useTime"`    // 共计操作时间
-	Comment    []Comment    `json:"comment"`    // 备注
-	Attachment []Attachment `json:"attachment"` // 附件
+	History []Action `json:"history"` // 历史流转
 }
 
 type ProcessInstanceDetailRequest struct {
 	Id string `uri:"id"`
+}
+
+type Action struct {
+	TaskId         string       `json:"taskId"`         // 任务ID
+	ActionName     string       `json:"actionName"`     // 执行步骤
+	HandelUser     string       `json:"handelUser"`     // 操作人
+	CreateTime     string       `json:"createTime"`     // 开始时间
+	HandleTime     string       `json:"handleTime"`     // 操作时间
+	UseTime        int          `json:"useTime"`        // 共计操作时间
+	Comment        []Comment    `json:"comment"`        // 备注
+	Attachment     []Attachment `json:"attachment"`     // 附件
+	FormRule       string       `json:"formRule"`       // 表单使用
+	FormOption     string       `json:"formOption"`     // 表单使用
+	FormProperties []Properties `json:"formProperties"` // 表单填写的值
 }
 
 type Comment struct {
@@ -60,4 +64,9 @@ type Attachment struct {
 	Name        string `json:"name"`        // 附件名
 	Description string `json:"description"` // 附件描述
 	Time        string `json:"time"`        // 上传时间
+}
+
+type Properties struct {
+	Id    string      `json:"id"`
+	Value interface{} `json:"value"`
 }

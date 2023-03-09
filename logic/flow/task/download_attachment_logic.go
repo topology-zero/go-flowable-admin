@@ -1,10 +1,11 @@
 package task
 
 import (
-	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/task/task_attachment"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/task"
+
+	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/task/task_attachment"
 )
 
 // DownloadAttachment 下载任务附件

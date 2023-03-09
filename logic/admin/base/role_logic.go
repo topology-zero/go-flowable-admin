@@ -1,10 +1,11 @@
 package base
 
 import (
-	"github.com/jinzhu/copier"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/base"
+
+	"github.com/jinzhu/copier"
 )
 
 // Role 获取所有角色

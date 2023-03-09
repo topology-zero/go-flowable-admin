@@ -1,10 +1,11 @@
 package user
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/user"
+
+	"github.com/pkg/errors"
 )
 
 // Del 删除用户

@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"time"
 
+	"go-flow-admin/pkg/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/sirupsen/logrus"
-	"go-flow-admin/pkg/util"
 )
 
 var writeList = []string{"/login"}

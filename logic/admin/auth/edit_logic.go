@@ -1,10 +1,11 @@
 package auth
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/auth"
+
+	"github.com/pkg/errors"
 )
 
 // Edit 编辑权限

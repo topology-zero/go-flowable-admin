@@ -1,9 +1,10 @@
 package svc
 
 import (
+	"go-flow-admin/pkg/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"go-flow-admin/pkg/util"
 )
 
 type ServiceContext struct {

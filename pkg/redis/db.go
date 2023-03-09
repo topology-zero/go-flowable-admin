@@ -3,11 +3,13 @@ package redis
 import (
 	"context"
 	"fmt"
+
 	"github.com/sirupsen/logrus"
+
+	"go-flow-admin/config"
 
 	redigo "github.com/go-redis/redis/v8"
 	"github.com/pkg/errors"
-	"go-flow-admin/config"
 )
 
 var Client *redigo.Client

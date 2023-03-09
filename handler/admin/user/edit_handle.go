@@ -1,13 +1,13 @@
 package user
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/internal/response"
 	"go-flow-admin/logic/admin/user"
 	"go-flow-admin/svc"
 	userType "go-flow-admin/types/admin/user"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
 )
 
 // EditHandle 编辑用户

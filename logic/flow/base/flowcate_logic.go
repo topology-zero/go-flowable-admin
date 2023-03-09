@@ -1,10 +1,11 @@
 package base
 
 import (
-	"github.com/jinzhu/copier"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/base"
+
+	"github.com/jinzhu/copier"
 )
 
 // Flowcate 流程分类列表

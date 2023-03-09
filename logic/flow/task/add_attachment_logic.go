@@ -4,12 +4,13 @@ import (
 	"io"
 	"strconv"
 
-	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/attachment"
-	"github.com/topology-zero/flowablesdk/task/task_attachment"
 	"go-flow-admin/pkg/jwt"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/task"
+
+	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/attachment"
+	"github.com/topology-zero/flowablesdk/task/task_attachment"
 )
 
 // AddAttachment 添加任务附件

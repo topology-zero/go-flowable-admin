@@ -1,11 +1,12 @@
 package cate
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/model"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/cate"
+
+	"github.com/pkg/errors"
 )
 
 // Add 添加流程分类

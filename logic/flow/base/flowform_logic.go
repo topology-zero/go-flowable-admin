@@ -1,11 +1,12 @@
 package base
 
 import (
+	"go-flow-admin/svc"
+	"go-flow-admin/types/flow/base"
+
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/topology-zero/flowablesdk/external_form/form_definition"
-	"go-flow-admin/svc"
-	"go-flow-admin/types/flow/base"
 )
 
 // Flowform 流程表单列表

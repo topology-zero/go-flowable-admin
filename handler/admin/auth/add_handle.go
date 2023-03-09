@@ -1,11 +1,12 @@
 package auth
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/internal/response"
 	"go-flow-admin/logic/admin/auth"
 	"go-flow-admin/svc"
 	authType "go-flow-admin/types/admin/auth"
+
+	"github.com/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 )

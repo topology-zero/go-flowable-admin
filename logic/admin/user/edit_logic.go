@@ -1,10 +1,11 @@
 package user
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/user"
+
+	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 

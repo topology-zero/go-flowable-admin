@@ -1,10 +1,11 @@
 package form
 
 import (
-	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/form"
+
+	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 )
 
 // Detail 流程外置表单详情

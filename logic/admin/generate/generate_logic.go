@@ -6,16 +6,17 @@ import (
 	"html/template"
 	"strings"
 
-	"github.com/pingcap/tidb/parser"
-	"github.com/pingcap/tidb/parser/ast"
-	"github.com/pingcap/tidb/parser/mysql"
-	driver "github.com/pingcap/tidb/types/parser_driver"
-	"github.com/pkg/errors"
 	"go-flow-admin/dto"
 	"go-flow-admin/model"
 	"go-flow-admin/pkg/util"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/generate"
+
+	"github.com/pingcap/tidb/parser"
+	"github.com/pingcap/tidb/parser/ast"
+	"github.com/pingcap/tidb/parser/mysql"
+	driver "github.com/pingcap/tidb/types/parser_driver"
+	"github.com/pkg/errors"
 )
 
 //go:embed _js.tpl

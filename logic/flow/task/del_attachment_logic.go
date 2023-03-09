@@ -3,11 +3,12 @@ package task
 import (
 	"strconv"
 
-	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/task/task_attachment"
 	"go-flow-admin/pkg/jwt"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/task"
+
+	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/task/task_attachment"
 )
 
 // DelAttachment 删除任务附件

@@ -1,10 +1,11 @@
 package cate
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/cate"
+
+	"github.com/pkg/errors"
 )
 
 // Edit 编辑流程分类

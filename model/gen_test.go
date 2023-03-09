@@ -8,6 +8,7 @@ import (
 	"go-flow-admin/config"
 	"go-flow-admin/model/internal"
 	"go-flow-admin/pkg/logger"
+
 	"gorm.io/gen"
 )
 

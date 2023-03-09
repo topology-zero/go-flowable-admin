@@ -1,11 +1,12 @@
 package form
 
 import (
+	"go-flow-admin/svc"
+	"go-flow-admin/types/flow/form"
+
 	"github.com/pkg/errors"
 	"github.com/topology-zero/flowablesdk/external_form/form_deployment"
 	formReq "github.com/topology-zero/flowablesdk/external_form/model"
-	"go-flow-admin/svc"
-	"go-flow-admin/types/flow/form"
 )
 
 // Add 添加流程外置表单

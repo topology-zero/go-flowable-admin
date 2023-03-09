@@ -1,11 +1,12 @@
 package base
 
 import (
-	"github.com/pkg/errors"
 	"go-flow-admin/pkg/jwt"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/base"
+
+	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 

@@ -40,8 +40,8 @@ type (
         List []AdminUsers `json:"list"` // 后台用户列表
     }
 
-    AdminUsers{
-        Id int `json:"id"` // 后台用户ID
+    AdminUsers {
+        Id int `json:"id"`        // 后台用户ID
         Name string `json:"name"` // 用户ID
     }
 )

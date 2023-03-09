@@ -3,15 +3,16 @@ package instance
 import (
 	"strings"
 
+	"go-flow-admin/logic/common"
+	"go-flow-admin/svc"
+	"go-flow-admin/types/flow/process/instance"
+
 	"github.com/pkg/errors"
 	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 	"github.com/topology-zero/flowablesdk/history/history_activity_instance"
 	"github.com/topology-zero/flowablesdk/history/history_task_instance"
 	"github.com/topology-zero/flowablesdk/task/task_attachment"
 	"github.com/topology-zero/flowablesdk/task/task_comment"
-	"go-flow-admin/logic/common"
-	"go-flow-admin/svc"
-	"go-flow-admin/types/flow/process/instance"
 )
 
 // Detail 流程详情

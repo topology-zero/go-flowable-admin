@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sirupsen/logrus"
-	"github.com/topology-zero/flowablesdk"
 	"go-flow-admin/config"
 	"go-flow-admin/middleware"
 	"go-flow-admin/model"
@@ -18,6 +16,8 @@ import (
 	"go-flow-admin/routes"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
+	"github.com/topology-zero/flowablesdk"
 )
 
 //go:generate goctl api plugin -p gengin -api go-flow-admin.api -dir .

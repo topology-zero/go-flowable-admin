@@ -3,10 +3,11 @@ package role
 import (
 	"encoding/json"
 
-	"github.com/pkg/errors"
 	"go-flow-admin/query"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/admin/role"
+
+	"github.com/pkg/errors"
 )
 
 // Detail 角色详情

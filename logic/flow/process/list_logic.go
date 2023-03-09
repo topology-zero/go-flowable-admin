@@ -3,11 +3,12 @@ package process
 import (
 	"fmt"
 
+	"go-flow-admin/svc"
+	"go-flow-admin/types/flow/process"
+
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/topology-zero/flowablesdk/process_definition"
-	"go-flow-admin/svc"
-	"go-flow-admin/types/flow/process"
 )
 
 // List 流程列表

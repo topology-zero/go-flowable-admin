@@ -1,10 +1,11 @@
 package base
 
 import (
-	"github.com/pkg/errors"
-	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/base"
+
+	"github.com/pkg/errors"
+	"github.com/topology-zero/flowablesdk/external_form/form_definition"
 )
 
 // Flowformveiw 流程表单预览

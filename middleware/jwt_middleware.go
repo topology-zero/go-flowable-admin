@@ -3,9 +3,10 @@ package middleware
 import (
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"go-flow-admin/internal/response"
 	"go-flow-admin/pkg/jwt"
+
+	"github.com/gin-gonic/gin"
 )
 
 func JwtMiddleware(c *gin.Context) {

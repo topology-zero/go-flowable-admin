@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"time"
 
+	"go-flow-admin/config"
+
 	"github.com/casbin/casbin/v2"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"go-flow-admin/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	glog "gorm.io/gorm/logger"

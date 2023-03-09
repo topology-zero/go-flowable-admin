@@ -3,12 +3,13 @@ package task
 import (
 	"strconv"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
-	processTask "github.com/topology-zero/flowablesdk/task"
 	"go-flow-admin/pkg/jwt"
 	"go-flow-admin/svc"
 	"go-flow-admin/types/flow/task"
+
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
+	processTask "github.com/topology-zero/flowablesdk/task"
 )
 
 // Candidate 我的任务

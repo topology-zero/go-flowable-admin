@@ -5,8 +5,9 @@ import (
 	"log"
 	"runtime"
 
-	"github.com/sirupsen/logrus"
 	"go-flow-admin/config"
+
+	"github.com/sirupsen/logrus"
 )
 
 func Setup() {

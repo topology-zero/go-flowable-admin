@@ -6,7 +6,7 @@ type (
     }
 
     FlowCateData {
-        Id int `json:"id"` // ID
+        Id int `json:"id"`        // ID
         Name string `json:"name"` // 分类名
     }
 
@@ -17,7 +17,7 @@ type (
     BaseFlowFormList {
         Id string `json:"id"`
         Key string `json:"key"`
-        Name string  `json:"name"`
+        Name string `json:"name"`
         Version int `json:"version"`
         Description string `json:"description"`
     }

@@ -14,8 +14,8 @@ type (
     }
 
     FlowCateList {
-        Id int `json:"id"`                  // ID
-        Name string `json:"name"`           // 分类名
+        Id int `json:"id"`                    // ID
+        Name string `json:"name"`             // 分类名
         CreateTime string `json:"createTime"` // 创建时间
     }
 

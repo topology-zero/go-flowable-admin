@@ -3,11 +3,12 @@ package jwt
 import (
 	"time"
 
+	"go-flow-admin/config"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"go-flow-admin/config"
 )
 
 const JwtName = "Authorization"
